@@ -6,7 +6,6 @@ const schema = require("./schemas/index");
 const { version } = require("./package.json");
 
 const app = express();
-const PORT = 3002;
 
 dotenv.config();
 
@@ -34,6 +33,6 @@ app.use("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening to port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Listening to port ${process.env.PORT}`);
 });
