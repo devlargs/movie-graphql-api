@@ -2,4 +2,5 @@
 
 This is created solely just for testing. Feel free to use it: 
 
-https://graphql-movies-api.herokuapp.com/graphql
+Playground: https://graphql-movies-api.herokuapp.com/graphql
+Documentation: TBD
