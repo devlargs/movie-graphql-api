@@ -6,6 +6,7 @@ const movieSchema = new Schema(
     name: {
       type: String,
       unique: true,
+      required: [true, "Name is required"],
     },
     directorId: mongoose.Types.ObjectId,
     genre: String,
