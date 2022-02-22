@@ -1,4 +1,6 @@
 const graphql = require("graphql");
+const Director = require("../models/director");
+const Movie = require("../models/movie");
 
 const {
   GraphQLObjectType,
@@ -7,32 +9,6 @@ const {
   GraphQLID,
   GraphQLList,
 } = graphql;
-
-const directors = [
-  {
-    id: "dir_1",
-    name: "Martin Scorsese",
-  },
-  {
-    id: "dir_2",
-    name: "Christopher Nolan",
-  },
-];
-
-const movies = [
-  {
-    id: "mov_1",
-    name: "Shutter Island",
-    genre: "Fiction",
-    directorId: `dir_1`,
-  },
-  {
-    id: "mov_2",
-    name: "The Dark Knight",
-    genre: "Fiction",
-    directorId: `dir_2`,
-  },
-];
 
 const MovieType = new GraphQLObjectType({
   name: "Movie",
@@ -43,7 +19,7 @@ const MovieType = new GraphQLObjectType({
     director: {
       type: DirectorType,
       resolve: (parent, args) => {
-        return directors.filter((q) => q.id === parent.directorId)?.[0] ?? null;
+        // return directors.filter((q) => q.id === parent.directorId)?.[0] ?? null;
       },
     },
   }),
@@ -57,7 +33,7 @@ const DirectorType = new GraphQLObjectType({
     movies: {
       type: new GraphQLList(MovieType),
       resolve(parent) {
-        return movies.filter((q) => q.directorId === parent.id);
+        // return movies.filter((q) => q.directorId === parent.id);
       },
     },
   }),
@@ -74,7 +50,7 @@ const RootQuery = new GraphQLObjectType({
         },
       },
       resolve(_, args) {
-        return movies.filter((q) => q.id === args.id)[0];
+        // return movies.filter((q) => q.id === args.id)[0];
       },
     },
     director: {
@@ -85,7 +61,46 @@ const RootQuery = new GraphQLObjectType({
         },
       },
       resolve(_, args) {
-        return directors.filter((q) => q.id === args.id)[0];
+        // return directors.filter((q) => q.id === args.id)[0];
+      },
+    },
+  },
+});
+
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    addDirector: {
+      type: MovieType,
+      args: {
+        name: { type: GraphQLString },
+      },
+      resolve: async (parent, args) => {
+        const director = new Director({
+          name: args.name,
+        });
+
+        try {
+          const newDirector = await director.save();
+          return newDirector;
+        } catch (ex) {}
+      },
+    },
+    addMovie: {
+      type: MovieType,
+      args: {
+        name: { type: GraphQLString },
+        genre: { type: GraphQLString },
+        directorId: { type: GraphQLID },
+      },
+      resolve: (parent, args) => {
+        const newMovie = new Movie({
+          name: args.name,
+          genre: args.genre,
+          directorId: args.directorId,
+        });
+
+        return newMovie.save();
       },
     },
   },
@@ -93,4 +108,5 @@ const RootQuery = new GraphQLObjectType({
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });
