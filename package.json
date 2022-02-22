@@ -1,6 +1,6 @@
 {
   "name": "movie-graphql-api",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A simple movie api",
   "main": "index.js",
   "scripts": {
