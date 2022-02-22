@@ -1,0 +1,26 @@
+{
+  "name": "movie-graphql-api",
+  "version": "0.0.1",
+  "description": "A simple movie api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devlargs/movie-graphql-api.git"
+  },
+  "author": "Ralph Largo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devlargs/movie-graphql-api/issues"
+  },
+  "homepage": "https://github.com/devlargs/movie-graphql-api#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.3.0",
+    "nodemon": "^2.0.15"
+  }
+}
