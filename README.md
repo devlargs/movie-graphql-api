@@ -1,4 +1,4 @@
-# movie-graphql-api
+# Movies GraphQL API
 
 This is created solely just for testing. Feel free to use it: 
 
