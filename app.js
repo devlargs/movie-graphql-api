@@ -3,6 +3,7 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
 const schema = require("./schemas/index");
+const { version } = require("./package.json");
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +24,15 @@ app.use(
     graphiql: true,
   })
 );
+
+app.use("/", (req, res) => {
+  res.send({
+    title: "Movies Graphql API",
+    createdBy: "Ralph Largo",
+    purpose: "Testing",
+    version,
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
