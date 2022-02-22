@@ -7,7 +7,7 @@ const movieSchema = new Schema(
       type: String,
       unique: true,
     },
-    directorId: String,
+    directorId: mongoose.Types.ObjectId,
     genre: String,
   },
   {

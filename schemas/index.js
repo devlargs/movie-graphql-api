@@ -18,8 +18,8 @@ const MovieType = new GraphQLObjectType({
     genre: { type: GraphQLString },
     director: {
       type: DirectorType,
-      resolve: (parent, args) => {
-        // return directors.filter((q) => q.id === parent.directorId)?.[0] ?? null;
+      resolve: (parent) => {
+        return Director.findById(parent.directorId);
       },
     },
   }),
@@ -33,14 +33,14 @@ const DirectorType = new GraphQLObjectType({
     movies: {
       type: new GraphQLList(MovieType),
       resolve(parent) {
-        // return movies.filter((q) => q.directorId === parent.id);
+        return Movie.find({ directorId: parent.id });
       },
     },
   }),
 });
 
-const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+const Query = new GraphQLObjectType({
+  name: "Query",
   fields: {
     movie: {
       type: MovieType,
@@ -50,7 +50,13 @@ const RootQuery = new GraphQLObjectType({
         },
       },
       resolve(_, args) {
-        // return movies.filter((q) => q.id === args.id)[0];
+        return Movie.findById(args.id);
+      },
+    },
+    movies: {
+      type: new GraphQLList(MovieType),
+      resolve() {
+        return Movie.find();
       },
     },
     director: {
@@ -61,7 +67,13 @@ const RootQuery = new GraphQLObjectType({
         },
       },
       resolve(_, args) {
-        // return directors.filter((q) => q.id === args.id)[0];
+        return Director.findById(args.id);
+      },
+    },
+    directors: {
+      type: new GraphQLList(DirectorType),
+      resolve() {
+        return Director.find();
       },
     },
   },
@@ -107,6 +119,6 @@ const Mutation = new GraphQLObjectType({
 });
 
 module.exports = new GraphQLSchema({
-  query: RootQuery,
+  query: Query,
   mutation: Mutation,
 });
