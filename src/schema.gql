@@ -1,0 +1,13 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  users: [User!]!
+}
+
+type User {
+  age: Int!
+  firstName: String!
+  lastName: String!
+}
