@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddDirectorInput {
+  biography: String!
+  firstName: String!
+  lastName: String!
+}
+
 input AddUserInput {
   age: Int!
 
@@ -10,12 +16,33 @@ input AddUserInput {
   lastName: String!
 }
 
+type Director {
+  biography: String!
+  firstName: String!
+  id: String!
+  lastName: String!
+}
+
+type DirectorUpdated {
+  id: String!
+  updated: Boolean!
+}
+
 type Mutation {
+  addDirector(input: AddDirectorInput!): [Director!]!
   addUser(input: AddUserInput!): [User!]!
+  updateDirector(id: String!, input: UpdateDirectorInput!): [DirectorUpdated!]!
 }
 
 type Query {
+  directors: [Director!]!
   users: [User!]!
+}
+
+input UpdateDirectorInput {
+  biography: String!
+  firstName: String!
+  lastName: String!
 }
 
 type User {

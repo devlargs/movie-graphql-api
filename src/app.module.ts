@@ -3,6 +3,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { join } from "path";
 import { UserModule } from "./modules/user/user.module";
+import { DirectorModule } from "./modules/director/director.module";
 import { MongooseModule } from "@nestjs/mongoose";
 
 @Module({
@@ -16,8 +17,9 @@ import { MongooseModule } from "@nestjs/mongoose";
         numberScalarMode: "integer",
       },
     }),
-    UserModule,
     MongooseModule.forRoot("mongodb://localhost/nest"),
+    UserModule,
+    DirectorModule,
   ],
 })
 export class AppModule {}
