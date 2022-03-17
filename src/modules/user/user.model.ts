@@ -1,4 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql";
+import mongoose from "mongoose";
 
 @ObjectType()
 export class User {
@@ -10,4 +11,18 @@ export class User {
 
   @Field()
   age: number;
+
+  @Field()
+  _id?: string;
 }
+
+export const UserSchema = new mongoose.Schema(
+  {
+    firstName: String,
+    lastName: String,
+    age: Number,
+  },
+  {
+    timestamps: true,
+  },
+);

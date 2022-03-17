@@ -19,6 +19,7 @@ type Query {
 }
 
 type User {
+  _id: String!
   age: Int!
   firstName: String!
   lastName: String!
