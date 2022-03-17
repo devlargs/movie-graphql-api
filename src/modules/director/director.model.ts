@@ -18,8 +18,8 @@ export class Director {
 
 @ObjectType()
 export class DirectorUpdated {
-  @Field()
-  updated: boolean;
+  // @Field()
+  // updated: boolean;
 
   @Field()
   id: string;

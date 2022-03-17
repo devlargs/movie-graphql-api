@@ -21,8 +21,15 @@ export class DirectorService {
   }
 
   async updateDirector(id: string, director: Director) {
-    const response = this.directorModel.findOneAndUpdate({ _id: id }, director);
-    console.log(response);
-    // return result;
+    try {
+      const response = await this.directorModel.findOneAndUpdate(
+        { _id: id },
+        director,
+      );
+      return response;
+    } catch (ex) {
+      console.log(ex);
+      return false;
+    }
   }
 }

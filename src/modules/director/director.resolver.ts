@@ -17,12 +17,13 @@ export class DirectorResolver {
     return this.directorService.addDirector(input);
   }
 
-  @Mutation(() => [DirectorUpdated])
-  updateDirector(
+  // TODO - doesnt resolve anything
+  @Mutation(() => [Director])
+  async updateDirector(
     @Args("input") input: UpdateDirectorInput,
     @Args("id") id: string,
   ) {
-    this.directorService.updateDirector(id, input);
-    return { data: true };
+    const response = await this.directorService.updateDirector(id, input);
+    return response;
   }
 }

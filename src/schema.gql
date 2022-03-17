@@ -23,15 +23,10 @@ type Director {
   lastName: String!
 }
 
-type DirectorUpdated {
-  id: String!
-  updated: Boolean!
-}
-
 type Mutation {
   addDirector(input: AddDirectorInput!): [Director!]!
   addUser(input: AddUserInput!): [User!]!
-  updateDirector(id: String!, input: UpdateDirectorInput!): [DirectorUpdated!]!
+  updateDirector(id: String!, input: UpdateDirectorInput!): [Director!]!
 }
 
 type Query {
