@@ -8,6 +8,11 @@ input AddDirectorInput {
   lastName: String!
 }
 
+input AddMovieInput {
+  directorIds: [String!]!
+  title: String!
+}
+
 input AddUserInput {
   age: Int!
 
@@ -23,14 +28,21 @@ type Director {
   lastName: String!
 }
 
+type Movie {
+  directors: [String!]!
+  title: String!
+}
+
 type Mutation {
-  addDirector(input: AddDirectorInput!): [Director!]!
+  addDirector(input: AddDirectorInput!): Boolean!
+  addMovie(input: AddMovieInput!): [Movie!]!
   addUser(input: AddUserInput!): [User!]!
   updateDirector(id: String!, input: UpdateDirectorInput!): [Director!]!
 }
 
 type Query {
   directors: [Director!]!
+  movies: [Movie!]!
   users: [User!]!
 }
 

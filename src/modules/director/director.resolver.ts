@@ -12,9 +12,11 @@ export class DirectorResolver {
     return this.directorService.getDirectors();
   }
 
-  @Mutation(() => [Director])
+  @Mutation(() => Boolean)
   addDirector(@Args("input") input: AddDirectorInput) {
-    return this.directorService.addDirector(input);
+    const response = this.directorService.addDirector(input);
+    console.log(response);
+    return response;
   }
 
   // TODO - doesnt resolve anything

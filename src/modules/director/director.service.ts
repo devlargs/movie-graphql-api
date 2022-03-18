@@ -16,8 +16,10 @@ export class DirectorService {
 
   async addDirector(director: Director) {
     const newDirector = new this.directorModel({ ...director });
-    const response = await newDirector.save();
-    return [{ ...response.toJSON() }];
+    await newDirector.save();
+    console.log(Object.keys(newDirector), newDirector.isNew);
+    // return [{ ...newDirector.toJSON() }];
+    return true;
   }
 
   async updateDirector(id: string, director: Director) {

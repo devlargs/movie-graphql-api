@@ -18,7 +18,9 @@ import { MovieModule } from "./modules/movies/movie.module";
         numberScalarMode: "integer",
       },
     }),
-    MongooseModule.forRoot("mongodb://localhost/nest"),
+    MongooseModule.forRoot(
+      "mongodb+srv://admin:ysalangmalakas@ralphlargo-cluster.cejts.mongodb.net/tanga",
+    ),
     MovieModule,
     DirectorModule,
     UserModule,

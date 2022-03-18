@@ -14,6 +14,13 @@ export class MovieResolver {
 
   @Mutation(() => [Movie])
   addMovie(@Args("input") input: AddMovieInput) {
-    return this.movieService.addMovie(input);
+    console.log(input);
+    // const temp = {...input, };
+    // delete temp.directorIds
+
+    return this.movieService.addMovie({
+      title: input.title,
+      directors: input.directorIds,
+    });
   }
 }
