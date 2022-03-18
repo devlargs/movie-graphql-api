@@ -1,37 +1,26 @@
 import { Injectable } from "@nestjs/common";
-import { Director } from "./director.model";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
+import { Model, Schema as MongooseSchema } from "mongoose";
+
+import { Director, DirectorDocument } from "./director.model";
+import { CreateDirectorInput, ListDirectorInput } from "./director.inputs";
 
 @Injectable()
 export class DirectorService {
   constructor(
-    @InjectModel("Director") private directorModel: Model<Director>,
+    @InjectModel(Director.name) private directorModel: Model<DirectorDocument>,
   ) {}
 
-  async getDirectors() {
-    const result = await this.directorModel.find();
-    return result;
+  create(payload: CreateDirectorInput) {
+    const createdDirector = new this.directorModel(payload);
+    return createdDirector.save();
   }
 
-  async addDirector(director: Director) {
-    const newDirector = new this.directorModel({ ...director });
-    await newDirector.save();
-    console.log(Object.keys(newDirector), newDirector.isNew);
-    // return [{ ...newDirector.toJSON() }];
-    return true;
+  getById(_id: MongooseSchema.Types.ObjectId) {
+    return this.directorModel.findById(_id).exec();
   }
 
-  async updateDirector(id: string, director: Director) {
-    try {
-      const response = await this.directorModel.findOneAndUpdate(
-        { _id: id },
-        director,
-      );
-      return response;
-    } catch (ex) {
-      console.log(ex);
-      return false;
-    }
+  list(filters: ListDirectorInput) {
+    return this.directorModel.find({ ...filters }).exec();
   }
 }
