@@ -3,9 +3,9 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { join } from "path";
 import { UserModule } from "./modules/user/user.module";
-import { DirectorModule } from "./modules/director/director.module";
 import { MongooseModule } from "@nestjs/mongoose";
-import { MovieModule } from "./modules/movies/movie.module";
+import { DirectorModule } from "./modules/director/director.module";
+import { MovieModule } from "./modules/movie/movie.module";
 
 @Module({
   imports: [
@@ -18,9 +18,7 @@ import { MovieModule } from "./modules/movies/movie.module";
         numberScalarMode: "integer",
       },
     }),
-    MongooseModule.forRoot(
-      "mongodb+srv://admin:ysalangmalakas@ralphlargo-cluster.cejts.mongodb.net/tanga",
-    ),
+    MongooseModule.forRoot("mongodb://127.0.0.1:27017/movies-dev"),
     MovieModule,
     DirectorModule,
     UserModule,

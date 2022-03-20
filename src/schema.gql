@@ -2,17 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AddDirectorInput {
-  biography: String!
-  firstName: String!
-  lastName: String!
-}
-
-input AddMovieInput {
-  directorIds: [String!]!
-  title: String!
-}
-
 input AddUserInput {
   age: Int!
 
@@ -21,35 +10,49 @@ input AddUserInput {
   lastName: String!
 }
 
-type Director {
-  biography: String!
-  firstName: String!
-  id: String!
-  lastName: String!
+input CreateDirectorInput {
+  name: String!
 }
 
-type Movie {
+input CreateMovieInput {
   directors: [String!]!
   title: String!
 }
 
+type Director {
+  _id: String!
+  name: String!
+}
+
+input ListDirectorInput {
+  _id: String
+  name: String
+}
+
+input ListMovieInput {
+  _id: String
+  directors: [String!]
+  title: String
+}
+
+type Movie {
+  _id: String!
+  directors(populate: Boolean!): [Director!]!
+  title: String!
+}
+
 type Mutation {
-  addDirector(input: AddDirectorInput!): Boolean!
-  addMovie(input: AddMovieInput!): [Movie!]!
   addUser(input: AddUserInput!): [User!]!
-  updateDirector(id: String!, input: UpdateDirectorInput!): [Director!]!
+  createDirector(payload: CreateDirectorInput!): Director!
+  createMovie(payload: CreateMovieInput!): Movie!
 }
 
 type Query {
-  directors: [Director!]!
-  movies: [Movie!]!
+  director(_id: String!): Director!
+  directors(filters: ListDirectorInput): [Director!]!
+  movie(_id: String!): Movie!
+  movies(filters: ListMovieInput): [Movie!]!
   users: [User!]!
-}
-
-input UpdateDirectorInput {
-  biography: String!
-  firstName: String!
-  lastName: String!
 }
 
 type User {
