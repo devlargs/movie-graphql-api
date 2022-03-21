@@ -9,6 +9,8 @@ import { MovieModule } from "./modules/movie/movie.module";
 import { GenreModule } from "./modules/genre/genre.module";
 import { ConfigModule } from "@nestjs/config";
 
+console.log("Current Version ======> v1.2.0");
+
 @Module({
   imports: [
     ConfigModule.forRoot(),

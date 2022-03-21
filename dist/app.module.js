@@ -17,6 +17,7 @@ const director_module_1 = require("./modules/director/director.module");
 const movie_module_1 = require("./modules/movie/movie.module");
 const genre_module_1 = require("./modules/genre/genre.module");
 const config_1 = require("@nestjs/config");
+console.log("Current Version ======> v1.2.0");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
