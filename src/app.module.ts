@@ -8,8 +8,11 @@ import { DirectorModule } from "./modules/director/director.module";
 import { MovieModule } from "./modules/movie/movie.module";
 import { GenreModule } from "./modules/genre/genre.module";
 import { ConfigModule } from "@nestjs/config";
+import * as pack from "../package.json";
 
-console.log("Current Version ======> v1.2.0");
+console.log("==========================");
+console.log(`Current Version: ${pack.version}`);
+console.log("==========================");
 
 @Module({
   imports: [
