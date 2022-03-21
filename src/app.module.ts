@@ -13,7 +13,7 @@ import { ConfigModule } from "@nestjs/config";
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      introspection: true,
+      introspection: JSON.parse(process.env.INTROSPECTION),
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
