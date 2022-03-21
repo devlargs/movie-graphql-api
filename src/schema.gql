@@ -1,0 +1,95 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AddUserInput {
+  age: Int!
+
+  """First Name"""
+  firstName: String!
+  lastName: String!
+}
+
+input CreateDirectorInput {
+  firstName: String!
+  imageUrl: String!
+  lastName: String!
+}
+
+input CreateGenreInput {
+  color: String!
+  name: String!
+}
+
+input CreateMovieInput {
+  directors: [String!]!
+  genres: [String!]!
+  imageUrl: String!
+  title: String!
+}
+
+type Director {
+  _id: String!
+  firstName: String!
+  imageUrl: String!
+  lastName: String!
+}
+
+type Genre {
+  _id: String!
+  color: String!
+  name: String!
+}
+
+input ListDirectorInput {
+  _id: String
+  firstName: String
+  imageUrl: String
+  lastName: String
+}
+
+input ListGenreInput {
+  _id: String
+  color: String!
+  name: String!
+}
+
+input ListMovieInput {
+  _id: String
+  directors: [String!]!
+  genres: [String!]!
+  imageUrl: String!
+  title: String
+}
+
+type Movie {
+  _id: String!
+  directors: [Director!]!
+  genres: [Genre!]!
+  imageUrl: String!
+  title: String!
+}
+
+type Mutation {
+  addUser(input: AddUserInput!): [User!]!
+  createDirector(input: CreateDirectorInput!): Director!
+  createGenre(input: CreateGenreInput!): Genre!
+  createMovie(input: CreateMovieInput!): Movie!
+}
+
+type Query {
+  director(_id: String!): Director!
+  directors(filters: ListDirectorInput): [Director!]!
+  genre(_id: String!): Genre!
+  genres(filters: ListGenreInput): [Genre!]!
+  movie(_id: String!): Movie!
+  movies(filters: ListMovieInput): [Movie!]!
+  users: [User!]!
+}
+
+type User {
+  _id: String!
+  age: Int!
+  firstName: String!
+  lastName: String!
+}
