@@ -35,12 +35,8 @@ export class MovieResolver {
   }
 
   @ResolveField(() => [Director])
-  async directors(
-    @Parent() movie: MovieDocument,
-    @Args("populate") populate: boolean,
-  ) {
-    if (populate)
-      await movie.populate({ path: "directors", model: Director.name });
+  async directors(@Parent() movie: MovieDocument) {
+    await movie.populate({ path: "directors", model: Director.name });
 
     return movie.directors;
   }

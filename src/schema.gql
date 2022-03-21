@@ -43,7 +43,7 @@ input ListMovieInput {
 
 type Movie {
   _id: String!
-  directors(populate: Boolean!): [Director!]!
+  directors: [Director!]!
   title: String!
 }
 
