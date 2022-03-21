@@ -21,7 +21,7 @@ import { ConfigModule } from "@nestjs/config";
         numberScalarMode: "integer",
       },
     }),
-    MongooseModule.forRoot(process.env.MONGO_CONNECTION_URI, {
+    MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {
       autoIndex: true,
     }),
     GenreModule,
