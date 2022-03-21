@@ -24,6 +24,7 @@ input CreateGenreInput {
 input CreateMovieInput {
   directors: [String!]!
   genres: [String!]!
+  imageUrl: String!
   title: String!
 }
 
@@ -55,8 +56,9 @@ input ListGenreInput {
 
 input ListMovieInput {
   _id: String
-  directors: [String!]
-  genres: [String!]
+  directors: [String!]!
+  genres: [String!]!
+  imageUrl: String!
   title: String
 }
 
@@ -64,6 +66,7 @@ type Movie {
   _id: String!
   directors: [Director!]!
   genres: [Genre!]!
+  imageUrl: String!
   title: String!
 }
 

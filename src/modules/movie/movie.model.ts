@@ -12,7 +12,7 @@ export class Movie {
   _id: MongooseSchema.Types.ObjectId;
 
   @Field(() => String)
-  @Prop()
+  @Prop({ unique: true })
   title: string;
 
   @Field(() => [Director])
@@ -22,6 +22,10 @@ export class Movie {
   @Field(() => [Genre])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Genre.name })
   genres: MongooseSchema.Types.ObjectId[] | Genre[];
+
+  @Field(() => String)
+  @Prop()
+  imageUrl: string;
 }
 
 export type MovieDocument = Movie & Document;

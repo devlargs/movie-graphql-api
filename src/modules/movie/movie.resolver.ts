@@ -38,14 +38,12 @@ export class MovieResolver {
   @ResolveField(() => [Director])
   async directors(@Parent() movie: MovieDocument) {
     await movie.populate({ path: "directors", model: Director.name });
-
     return movie.directors;
   }
 
   @ResolveField(() => [Genre])
   async genres(@Parent() movie: MovieDocument) {
     await movie.populate({ path: "genres", model: Genre.name });
-
     return movie.genres;
   }
 }

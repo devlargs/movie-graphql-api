@@ -7,9 +7,11 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { DirectorModule } from "./modules/director/director.module";
 import { MovieModule } from "./modules/movie/movie.module";
 import { GenreModule } from "./modules/genre/genre.module";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
@@ -19,7 +21,9 @@ import { GenreModule } from "./modules/genre/genre.module";
         numberScalarMode: "integer",
       },
     }),
-    MongooseModule.forRoot("mongodb://127.0.0.1:27017/movies-dev"),
+    MongooseModule.forRoot(process.env.MONGO_CONNECTION_URI, {
+      autoIndex: true,
+    }),
     GenreModule,
     MovieModule,
     DirectorModule,
