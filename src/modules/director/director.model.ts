@@ -10,7 +10,15 @@ export class Director {
 
   @Field(() => String)
   @Prop()
-  name: string;
+  firstName: string;
+
+  @Field(() => String)
+  @Prop()
+  lastName: string;
+
+  @Field(() => String)
+  @Prop()
+  imageUrl: string;
 }
 
 export type DirectorDocument = Director & Document;

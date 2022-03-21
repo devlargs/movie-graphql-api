@@ -11,7 +11,9 @@ input AddUserInput {
 }
 
 input CreateDirectorInput {
-  name: String!
+  firstName: String!
+  imageUrl: String!
+  lastName: String!
 }
 
 input CreateMovieInput {
@@ -21,12 +23,16 @@ input CreateMovieInput {
 
 type Director {
   _id: String!
-  name: String!
+  firstName: String!
+  imageUrl: String!
+  lastName: String!
 }
 
 input ListDirectorInput {
   _id: String
-  name: String
+  firstName: String
+  imageUrl: String
+  lastName: String
 }
 
 input ListMovieInput {

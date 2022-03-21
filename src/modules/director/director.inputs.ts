@@ -4,7 +4,13 @@ import { Field, InputType } from "@nestjs/graphql";
 @InputType()
 export class CreateDirectorInput {
   @Field(() => String)
-  name: string;
+  firstName: string;
+
+  @Field(() => String)
+  lastName: string;
+
+  @Field(() => String)
+  imageUrl: string;
 }
 
 @InputType()
@@ -13,5 +19,11 @@ export class ListDirectorInput {
   _id?: MongooseSchema.Types.ObjectId;
 
   @Field(() => String, { nullable: true })
-  name?: string;
+  firstName?: string;
+
+  @Field(() => String, { nullable: true })
+  lastName?: string;
+
+  @Field(() => String, { nullable: true })
+  imageUrl?: string;
 }
