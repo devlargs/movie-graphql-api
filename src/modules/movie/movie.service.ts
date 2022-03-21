@@ -11,8 +11,8 @@ export class MovieService {
     @InjectModel(Movie.name) private movieModel: Model<MovieDocument>,
   ) {}
 
-  create(payload: CreateMovieInput) {
-    const createdMovie = new this.movieModel(payload);
+  create(input: CreateMovieInput) {
+    const createdMovie = new this.movieModel(input);
     return createdMovie.save();
   }
 

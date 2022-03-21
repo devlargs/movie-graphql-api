@@ -16,6 +16,11 @@ input CreateDirectorInput {
   lastName: String!
 }
 
+input CreateGenreInput {
+  color: [String!]!
+  name: [String!]!
+}
+
 input CreateMovieInput {
   directors: [String!]!
   title: String!
@@ -28,11 +33,23 @@ type Director {
   lastName: String!
 }
 
+type Genre {
+  _id: String!
+  color: String!
+  name: String!
+}
+
 input ListDirectorInput {
   _id: String
   firstName: String
   imageUrl: String
   lastName: String
+}
+
+input ListGenreInput {
+  _id: String
+  color: [String!]!
+  name: String!
 }
 
 input ListMovieInput {
@@ -49,13 +66,16 @@ type Movie {
 
 type Mutation {
   addUser(input: AddUserInput!): [User!]!
-  createDirector(payload: CreateDirectorInput!): Director!
-  createMovie(payload: CreateMovieInput!): Movie!
+  createDirector(input: CreateDirectorInput!): Director!
+  createGenre(input: CreateGenreInput!): Genre!
+  createMovie(input: CreateMovieInput!): Movie!
 }
 
 type Query {
   director(_id: String!): Director!
   directors(filters: ListDirectorInput): [Director!]!
+  genre(_id: String!): Genre!
+  genres(filters: ListGenreInput): [Genre!]!
   movie(_id: String!): Movie!
   movies(filters: ListMovieInput): [Movie!]!
   users: [User!]!

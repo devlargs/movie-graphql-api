@@ -24,7 +24,7 @@ export class DirectorResolver {
   }
 
   @Mutation(() => Director)
-  async createDirector(@Args("payload") payload: CreateDirectorInput) {
-    return this.directorService.create(payload);
+  async createDirector(@Args("input") input: CreateDirectorInput) {
+    return this.directorService.create(input);
   }
 }

@@ -11,8 +11,8 @@ export class DirectorService {
     @InjectModel(Director.name) private directorModel: Model<DirectorDocument>,
   ) {}
 
-  create(payload: CreateDirectorInput) {
-    const createdDirector = new this.directorModel(payload);
+  create(input: CreateDirectorInput) {
+    const createdDirector = new this.directorModel(input);
     return createdDirector.save();
   }
 

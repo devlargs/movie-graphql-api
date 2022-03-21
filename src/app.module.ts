@@ -6,6 +6,7 @@ import { UserModule } from "./modules/user/user.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { DirectorModule } from "./modules/director/director.module";
 import { MovieModule } from "./modules/movie/movie.module";
+import { GenreModule } from "./modules/genre/genre.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MovieModule } from "./modules/movie/movie.module";
       },
     }),
     MongooseModule.forRoot("mongodb://127.0.0.1:27017/movies-dev"),
+    GenreModule,
     MovieModule,
     DirectorModule,
     UserModule,

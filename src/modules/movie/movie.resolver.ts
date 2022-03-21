@@ -30,8 +30,8 @@ export class MovieResolver {
   }
 
   @Mutation(() => Movie)
-  async createMovie(@Args("payload") payload: CreateMovieInput) {
-    return this.movieService.create(payload);
+  async createMovie(@Args("input") input: CreateMovieInput) {
+    return this.movieService.create(input);
   }
 
   @ResolveField(() => [Director])
