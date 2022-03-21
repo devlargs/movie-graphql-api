@@ -15,6 +15,10 @@ console.log("Current Version ======> v1.2.0");
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      cors: {
+        origin: "http://localhost:3000", // Tell front end to use this port
+        credentials: true,
+      },
       introspection: JSON.parse(process.env.INTROSPECTION),
       driver: ApolloDriver,
       playground: true,
