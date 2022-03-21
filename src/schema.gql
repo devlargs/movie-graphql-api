@@ -17,12 +17,13 @@ input CreateDirectorInput {
 }
 
 input CreateGenreInput {
-  color: [String!]!
-  name: [String!]!
+  color: String!
+  name: String!
 }
 
 input CreateMovieInput {
   directors: [String!]!
+  genres: [String!]!
   title: String!
 }
 
@@ -48,19 +49,21 @@ input ListDirectorInput {
 
 input ListGenreInput {
   _id: String
-  color: [String!]!
+  color: String!
   name: String!
 }
 
 input ListMovieInput {
   _id: String
   directors: [String!]
+  genres: [String!]
   title: String
 }
 
 type Movie {
   _id: String!
   directors: [Director!]!
+  genres: [Genre!]!
   title: String!
 }
 

@@ -8,6 +8,9 @@ export class CreateMovieInput {
 
   @Field(() => [String])
   directors: MongooseSchema.Types.ObjectId[];
+
+  @Field(() => [String])
+  genres: MongooseSchema.Types.ObjectId[];
 }
 
 @InputType()
@@ -20,4 +23,7 @@ export class ListMovieInput {
 
   @Field(() => [String], { nullable: true })
   directors?: MongooseSchema.Types.ObjectId[];
+
+  @Field(() => [String], { nullable: true })
+  genres?: MongooseSchema.Types.ObjectId[];
 }

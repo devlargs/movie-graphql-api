@@ -12,6 +12,7 @@ import { Movie, MovieDocument } from "./movie.model";
 import { MovieService } from "./movie.service";
 import { CreateMovieInput, ListMovieInput } from "./movie.inputs";
 import { Director } from "../director/director.model";
+import { Genre } from "../genre/genre.model";
 
 @Resolver(() => Movie)
 export class MovieResolver {
@@ -39,5 +40,12 @@ export class MovieResolver {
     await movie.populate({ path: "directors", model: Director.name });
 
     return movie.directors;
+  }
+
+  @ResolveField(() => [Genre])
+  async genres(@Parent() movie: MovieDocument) {
+    await movie.populate({ path: "genres", model: Genre.name });
+
+    return movie.genres;
   }
 }

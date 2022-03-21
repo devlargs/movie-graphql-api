@@ -3,10 +3,10 @@ import { Schema as MongooseSchema } from "mongoose";
 
 @InputType()
 export class CreateGenreInput {
-  @Field(() => [String])
+  @Field(() => String)
   name: string;
 
-  @Field(() => [String])
+  @Field(() => String)
   color: string;
 }
 
@@ -18,6 +18,6 @@ export class ListGenreInput {
   @Field(() => String)
   name: string;
 
-  @Field(() => [String])
+  @Field(() => String)
   color: string;
 }

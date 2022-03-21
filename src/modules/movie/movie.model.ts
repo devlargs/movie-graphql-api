@@ -3,6 +3,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { Document, Schema as MongooseSchema } from "mongoose";
 
 import { Director } from "../director/director.model";
+import { Genre } from "../genre/genre.model";
 
 @ObjectType()
 @Schema()
@@ -17,6 +18,10 @@ export class Movie {
   @Field(() => [Director])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Director.name })
   directors: MongooseSchema.Types.ObjectId[] | Director[];
+
+  @Field(() => [Genre])
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Genre.name })
+  genres: MongooseSchema.Types.ObjectId[] | Genre[];
 }
 
 export type MovieDocument = Movie & Document;
