@@ -76,6 +76,7 @@ type Mutation {
   createGenre(input: CreateGenreInput!): Genre!
   createMovie(input: CreateMovieInput!): Movie!
   deleteGenre(id: String!): Boolean!
+  updateDirector(_id: String!, input: UpdateDirectorInput!): Director!
 }
 
 type Query {
@@ -86,6 +87,12 @@ type Query {
   movie(_id: String!): Movie!
   movies(filters: ListMovieInput): [Movie!]!
   users: [User!]!
+}
+
+input UpdateDirectorInput {
+  firstName: String
+  imageUrl: String
+  lastName: String
 }
 
 type User {

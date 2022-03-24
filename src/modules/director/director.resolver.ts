@@ -3,7 +3,11 @@ import { Schema as MongooseSchema } from "mongoose";
 
 import { Director } from "./director.model";
 import { DirectorService } from "./director.service";
-import { CreateDirectorInput, ListDirectorInput } from "./director.inputs";
+import {
+  CreateDirectorInput,
+  ListDirectorInput,
+  UpdateDirectorInput,
+} from "./director.inputs";
 
 @Resolver(() => Director)
 export class DirectorResolver {
@@ -26,5 +30,13 @@ export class DirectorResolver {
   @Mutation(() => Director)
   async createDirector(@Args("input") input: CreateDirectorInput) {
     return this.directorService.create(input);
+  }
+
+  @Mutation(() => Director)
+  async updateDirector(
+    @Args("input") input: UpdateDirectorInput,
+    @Args("_id", { type: () => String }) _id: MongooseSchema.Types.ObjectId,
+  ) {
+    return this.directorService.updateOne(input, _id);
   }
 }

@@ -3,7 +3,11 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
 
 import { Director, DirectorDocument } from "./director.model";
-import { CreateDirectorInput, ListDirectorInput } from "./director.inputs";
+import {
+  CreateDirectorInput,
+  ListDirectorInput,
+  UpdateDirectorInput,
+} from "./director.inputs";
 
 @Injectable()
 export class DirectorService {
@@ -22,5 +26,15 @@ export class DirectorService {
 
   list(filters: ListDirectorInput) {
     return this.directorModel.find({ ...filters }).exec();
+  }
+
+  updateOne(input: UpdateDirectorInput, _id: MongooseSchema.Types.ObjectId) {
+    return this.directorModel.findOneAndUpdate(
+      { _id },
+      { ...input },
+      {
+        new: true,
+      },
+    );
   }
 }

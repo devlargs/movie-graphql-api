@@ -31,6 +31,11 @@ let DirectorService = class DirectorService {
     list(filters) {
         return this.directorModel.find(Object.assign({}, filters)).exec();
     }
+    updateOne(input, _id) {
+        return this.directorModel.findOneAndUpdate({ _id }, Object.assign({}, input), {
+            new: true,
+        });
+    }
 };
 DirectorService = __decorate([
     (0, common_1.Injectable)(),

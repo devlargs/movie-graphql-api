@@ -4,6 +4,11 @@ export declare class CreateDirectorInput {
     lastName: string;
     imageUrl: string;
 }
+export declare class UpdateDirectorInput {
+    firstName?: string;
+    lastName?: string;
+    imageUrl?: string;
+}
 export declare class ListDirectorInput {
     _id?: MongooseSchema.Types.ObjectId;
     firstName?: string;
