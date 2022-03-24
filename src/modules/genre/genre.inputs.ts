@@ -11,6 +11,15 @@ export class CreateGenreInput {
 }
 
 @InputType()
+export class UpdateGenreInput {
+  @Field({ nullable: true })
+  name: string;
+
+  @Field({ nullable: true })
+  color: string;
+}
+
+@InputType()
 export class ListGenreInput {
   @Field(() => String, { nullable: true })
   _id?: MongooseSchema.Types.ObjectId;

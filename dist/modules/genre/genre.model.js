@@ -31,7 +31,7 @@ __decorate([
 ], Genre.prototype, "color", void 0);
 Genre = __decorate([
     (0, graphql_1.ObjectType)(),
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], Genre);
 exports.Genre = Genre;
 exports.GenreSchema = mongoose_1.SchemaFactory.createForClass(Genre);

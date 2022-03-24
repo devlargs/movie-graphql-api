@@ -36,7 +36,7 @@ __decorate([
 ], Director.prototype, "imageUrl", void 0);
 Director = __decorate([
     (0, graphql_1.ObjectType)(),
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], Director);
 exports.Director = Director;
 exports.DirectorSchema = mongoose_1.SchemaFactory.createForClass(Director);

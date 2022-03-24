@@ -14,6 +14,18 @@ export class CreateDirectorInput {
 }
 
 @InputType()
+export class UpdateDirectorInput {
+  @Field({ nullable: true })
+  firstName?: string;
+
+  @Field({ nullable: true })
+  lastName?: string;
+
+  @Field({ nullable: true })
+  imageUrl?: string;
+}
+
+@InputType()
 export class ListDirectorInput {
   @Field(() => String, { nullable: true })
   _id?: MongooseSchema.Types.ObjectId;

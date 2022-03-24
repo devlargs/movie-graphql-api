@@ -7,7 +7,7 @@
 /// <reference types="mongoose/types/schemaoptions" />
 import { Model, Schema as MongooseSchema } from "mongoose";
 import { Director, DirectorDocument } from "./director.model";
-import { CreateDirectorInput, ListDirectorInput } from "./director.inputs";
+import { CreateDirectorInput, ListDirectorInput, UpdateDirectorInput } from "./director.inputs";
 export declare class DirectorService {
     private directorModel;
     constructor(directorModel: Model<DirectorDocument>);
@@ -20,4 +20,9 @@ export declare class DirectorService {
     list(filters: ListDirectorInput): Promise<(Director & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
+    updateOne(input: UpdateDirectorInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Director & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, Director & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, {}, DirectorDocument>;
 }

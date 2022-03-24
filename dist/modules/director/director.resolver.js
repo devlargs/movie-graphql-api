@@ -31,6 +31,9 @@ let DirectorResolver = class DirectorResolver {
     async createDirector(input) {
         return this.directorService.create(input);
     }
+    async updateDirector(input, _id) {
+        return this.directorService.updateOne(input, _id);
+    }
 };
 __decorate([
     (0, graphql_1.Query)(() => director_model_1.Director),
@@ -53,6 +56,14 @@ __decorate([
     __metadata("design:paramtypes", [director_inputs_1.CreateDirectorInput]),
     __metadata("design:returntype", Promise)
 ], DirectorResolver.prototype, "createDirector", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => director_model_1.Director),
+    __param(0, (0, graphql_1.Args)("input")),
+    __param(1, (0, graphql_1.Args)("_id", { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [director_inputs_1.UpdateDirectorInput, mongoose_1.Schema.Types.ObjectId]),
+    __metadata("design:returntype", Promise)
+], DirectorResolver.prototype, "updateDirector", null);
 DirectorResolver = __decorate([
     (0, graphql_1.Resolver)(() => director_model_1.Director),
     __metadata("design:paramtypes", [director_service_1.DirectorService])

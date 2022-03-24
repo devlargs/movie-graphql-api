@@ -6,7 +6,7 @@ import { Director } from "../director/director.model";
 import { Genre } from "../genre/genre.model";
 
 @ObjectType()
-@Schema()
+@Schema({ timestamps: true })
 export class Movie {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId;

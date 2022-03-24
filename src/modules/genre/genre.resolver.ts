@@ -3,7 +3,11 @@ import { Schema as MongooseSchema } from "mongoose";
 
 import { Genre } from "./genre.model";
 import { GenreService } from "./genre.service";
-import { CreateGenreInput, ListGenreInput } from "./genre.inputs";
+import {
+  CreateGenreInput,
+  ListGenreInput,
+  UpdateGenreInput,
+} from "./genre.inputs";
 
 @Resolver(() => Genre)
 export class GenreResolver {
@@ -24,5 +28,21 @@ export class GenreResolver {
   @Mutation(() => Genre)
   async createGenre(@Args("input") input: CreateGenreInput) {
     return this.genreService.create(input);
+  }
+
+  @Mutation(() => Boolean)
+  async deleteGenre(
+    @Args("id", { type: () => String }) _id: MongooseSchema.Types.ObjectId,
+  ) {
+    this.genreService.delete(_id);
+    return true;
+  }
+
+  @Mutation(() => Genre)
+  async updateGenre(
+    @Args("input") input: UpdateGenreInput,
+    @Args("id", { type: () => String }) id: MongooseSchema.Types.ObjectId,
+  ) {
+    return this.genreService.update(input, id);
   }
 }
