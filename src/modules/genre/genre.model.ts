@@ -3,7 +3,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { Document, Schema as MongooseSchema } from "mongoose";
 
 @ObjectType()
-@Schema()
+@Schema({ timestamps: true })
 export class Genre {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId;

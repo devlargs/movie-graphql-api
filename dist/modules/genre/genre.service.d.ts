@@ -17,6 +17,9 @@ export declare class GenreService {
     getById(_id: MongooseSchema.Types.ObjectId): Promise<Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;
+    delete(_id: MongooseSchema.Types.ObjectId): import("mongoose").Query<import("mongodb").DeleteResult, Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, {}, GenreDocument>;
     list(filters: ListGenreInput): Promise<(Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;

@@ -75,6 +75,7 @@ type Mutation {
   createDirector(input: CreateDirectorInput!): Director!
   createGenre(input: CreateGenreInput!): Genre!
   createMovie(input: CreateMovieInput!): Movie!
+  deleteGenre(id: String!): Boolean!
 }
 
 type Query {

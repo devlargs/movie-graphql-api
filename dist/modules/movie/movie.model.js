@@ -43,7 +43,7 @@ __decorate([
 ], Movie.prototype, "imageUrl", void 0);
 Movie = __decorate([
     (0, graphql_1.ObjectType)(),
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], Movie);
 exports.Movie = Movie;
 exports.MovieSchema = mongoose_1.SchemaFactory.createForClass(Movie);

@@ -25,4 +25,12 @@ export class GenreResolver {
   async createGenre(@Args("input") input: CreateGenreInput) {
     return this.genreService.create(input);
   }
+
+  @Mutation(() => Boolean)
+  async deleteGenre(
+    @Args("id", { type: () => String }) _id: MongooseSchema.Types.ObjectId,
+  ) {
+    this.genreService.delete(_id);
+    return true;
+  }
 }

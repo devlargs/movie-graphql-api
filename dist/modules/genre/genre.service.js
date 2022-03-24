@@ -28,6 +28,9 @@ let GenreService = class GenreService {
     getById(_id) {
         return this.genreModel.findById(_id).exec();
     }
+    delete(_id) {
+        return this.genreModel.deleteOne({ _id });
+    }
     list(filters) {
         return this.genreModel.find(Object.assign({}, filters)).exec();
     }

@@ -20,6 +20,10 @@ export class GenreService {
     return this.genreModel.findById(_id).exec();
   }
 
+  delete(_id: MongooseSchema.Types.ObjectId) {
+    return this.genreModel.deleteOne({ _id });
+  }
+
   list(filters: ListGenreInput) {
     return this.genreModel.find({ ...filters }).exec();
   }
