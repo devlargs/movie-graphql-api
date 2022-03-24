@@ -34,6 +34,9 @@ let GenreService = class GenreService {
     list(filters) {
         return this.genreModel.find(Object.assign({}, filters)).exec();
     }
+    update(input, _id) {
+        return this.genreModel.findOneAndUpdate({ _id }, Object.assign({}, input), { new: true });
+    }
 };
 GenreService = __decorate([
     (0, common_1.Injectable)(),

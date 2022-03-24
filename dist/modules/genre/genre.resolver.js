@@ -35,6 +35,9 @@ let GenreResolver = class GenreResolver {
         this.genreService.delete(_id);
         return true;
     }
+    async updateGenre(input, id) {
+        return this.genreService.update(input, id);
+    }
 };
 __decorate([
     (0, graphql_1.Query)(() => genre_model_1.Genre),
@@ -64,6 +67,14 @@ __decorate([
     __metadata("design:paramtypes", [mongoose_1.Schema.Types.ObjectId]),
     __metadata("design:returntype", Promise)
 ], GenreResolver.prototype, "deleteGenre", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => genre_model_1.Genre),
+    __param(0, (0, graphql_1.Args)("input")),
+    __param(1, (0, graphql_1.Args)("id", { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [genre_inputs_1.UpdateGenreInput, mongoose_1.Schema.Types.ObjectId]),
+    __metadata("design:returntype", Promise)
+], GenreResolver.prototype, "updateGenre", null);
 GenreResolver = __decorate([
     (0, graphql_1.Resolver)(() => genre_model_1.Genre),
     __metadata("design:paramtypes", [genre_service_1.GenreService])

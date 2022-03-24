@@ -7,7 +7,7 @@
 /// <reference types="mongoose/types/schemaoptions" />
 import { Model, Schema as MongooseSchema } from "mongoose";
 import { Genre, GenreDocument } from "./genre.model";
-import { CreateGenreInput, ListGenreInput } from "./genre.inputs";
+import { CreateGenreInput, ListGenreInput, UpdateGenreInput } from "./genre.inputs";
 export declare class GenreService {
     private genreModel;
     constructor(genreModel: Model<GenreDocument>);
@@ -23,4 +23,9 @@ export declare class GenreService {
     list(filters: ListGenreInput): Promise<(Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
+    update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, {}, GenreDocument>;
 }

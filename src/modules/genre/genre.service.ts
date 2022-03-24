@@ -3,7 +3,11 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
 
 import { Genre, GenreDocument } from "./genre.model";
-import { CreateGenreInput, ListGenreInput } from "./genre.inputs";
+import {
+  CreateGenreInput,
+  ListGenreInput,
+  UpdateGenreInput,
+} from "./genre.inputs";
 
 @Injectable()
 export class GenreService {
@@ -26,5 +30,13 @@ export class GenreService {
 
   list(filters: ListGenreInput) {
     return this.genreModel.find({ ...filters }).exec();
+  }
+
+  update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId) {
+    return this.genreModel.findOneAndUpdate(
+      { _id },
+      { ...input },
+      { new: true },
+    );
   }
 }

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListGenreInput = exports.CreateGenreInput = void 0;
+exports.ListGenreInput = exports.UpdateGenreInput = exports.CreateGenreInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const mongoose_1 = require("mongoose");
 let CreateGenreInput = class CreateGenreInput {
@@ -26,6 +26,20 @@ CreateGenreInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateGenreInput);
 exports.CreateGenreInput = CreateGenreInput;
+let UpdateGenreInput = class UpdateGenreInput {
+};
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateGenreInput.prototype, "name", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateGenreInput.prototype, "color", void 0);
+UpdateGenreInput = __decorate([
+    (0, graphql_1.InputType)()
+], UpdateGenreInput);
+exports.UpdateGenreInput = UpdateGenreInput;
 let ListGenreInput = class ListGenreInput {
 };
 __decorate([
