@@ -8,13 +8,9 @@
 import { Model, Schema as MongooseSchema } from "mongoose";
 import { Genre, GenreDocument } from "./genre.model";
 import { CreateGenreInput, ListGenreInput, UpdateGenreInput } from "./genre.inputs";
-import { GenericObject } from "src/types";
 export declare class GenreService {
     private genreModel;
     constructor(genreModel: Model<GenreDocument>);
-    find(filters: GenericObject): Promise<(Genre & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    })[]>;
     create(input: CreateGenreInput): Promise<Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;
@@ -24,9 +20,11 @@ export declare class GenreService {
     delete(_id: MongooseSchema.Types.ObjectId): import("mongoose").Query<import("mongodb").DeleteResult, Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, {}, GenreDocument>;
-    list(filters: ListGenreInput): Promise<(Genre & import("mongoose").Document<any, any, any> & {
+    list(filters: ListGenreInput): import("mongoose").Query<(Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
-    })[]>;
+    })[], Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, {}, GenreDocument>;
     update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, Genre & import("mongoose").Document<any, any, any> & {

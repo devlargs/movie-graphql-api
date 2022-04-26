@@ -35,6 +35,6 @@ export class MovieService {
   }
 
   list(filters: ListMovieInput) {
-    return this.movieModel.find({ ...filters }).exec();
+    return this.movieModel.find({ ...filters }).sort({ title: "ascending" });
   }
 }

@@ -21,9 +21,6 @@ let GenreService = class GenreService {
     constructor(genreModel) {
         this.genreModel = genreModel;
     }
-    find(filters) {
-        return this.genreModel.find(Object.assign({}, filters)).exec();
-    }
     async create(input) {
         const isExisting = await this.genreModel.find({
             name: { $regex: input.name, $options: "i" },
@@ -41,7 +38,7 @@ let GenreService = class GenreService {
         return this.genreModel.deleteOne({ _id });
     }
     list(filters) {
-        return this.genreModel.find(Object.assign({}, filters)).exec();
+        return this.genreModel.find(Object.assign({}, filters)).sort({ name: "ascending" });
     }
     update(input, _id) {
         return this.genreModel.findOneAndUpdate({ _id }, Object.assign({}, input), { new: true });

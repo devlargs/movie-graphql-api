@@ -16,10 +16,6 @@ export class GenreService {
     @InjectModel(Genre.name) private genreModel: Model<GenreDocument>,
   ) {}
 
-  find(filters: GenericObject) {
-    return this.genreModel.find({ ...filters }).exec();
-  }
-
   async create(input: CreateGenreInput) {
     const isExisting = await this.genreModel.find({
       name: { $regex: input.name, $options: "i" },
@@ -45,7 +41,7 @@ export class GenreService {
   }
 
   list(filters: ListGenreInput) {
-    return this.genreModel.find({ ...filters }).exec();
+    return this.genreModel.find({ ...filters }).sort({ name: "ascending" });
   }
 
   update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId) {

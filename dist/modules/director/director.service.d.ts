@@ -17,9 +17,11 @@ export declare class DirectorService {
     getById(_id: MongooseSchema.Types.ObjectId): Promise<Director & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;
-    list(filters: ListDirectorInput): Promise<(Director & import("mongoose").Document<any, any, any> & {
+    list(filters: ListDirectorInput): import("mongoose").Query<(Director & import("mongoose").Document<any, any, any> & {
         _id: any;
-    })[]>;
+    })[], Director & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, {}, DirectorDocument>;
     updateOne(input: UpdateDirectorInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Director & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, Director & import("mongoose").Document<any, any, any> & {

@@ -38,7 +38,7 @@ export class DirectorService {
   }
 
   list(filters: ListDirectorInput) {
-    return this.directorModel.find({ ...filters }).exec();
+    return this.directorModel.find({ ...filters }).sort({ name: "ascending" });
   }
 
   updateOne(input: UpdateDirectorInput, _id: MongooseSchema.Types.ObjectId) {

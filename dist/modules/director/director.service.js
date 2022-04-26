@@ -36,7 +36,7 @@ let DirectorService = class DirectorService {
         return this.directorModel.findById(_id).exec();
     }
     list(filters) {
-        return this.directorModel.find(Object.assign({}, filters)).exec();
+        return this.directorModel.find(Object.assign({}, filters)).sort({ name: "ascending" });
     }
     updateOne(input, _id) {
         return this.directorModel.findOneAndUpdate({ _id }, Object.assign({}, input), {

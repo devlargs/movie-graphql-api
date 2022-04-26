@@ -38,7 +38,7 @@ let MovieService = class MovieService {
         return this.movieModel.findById(_id).exec();
     }
     list(filters) {
-        return this.movieModel.find(Object.assign({}, filters)).exec();
+        return this.movieModel.find(Object.assign({}, filters)).sort({ title: "ascending" });
     }
 };
 MovieService = __decorate([
