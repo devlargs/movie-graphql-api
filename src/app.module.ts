@@ -20,7 +20,7 @@ console.log("==========================");
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       cors: {
-        origin: "http://localhost:3000", // Tell front end to use this port
+        origin: "*",
         credentials: true,
       },
       introspection: JSON.parse(process.env.INTROSPECTION),

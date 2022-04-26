@@ -29,7 +29,7 @@ AppModule = __decorate([
             config_1.ConfigModule.forRoot(),
             graphql_1.GraphQLModule.forRoot({
                 cors: {
-                    origin: "http://localhost:3000",
+                    origin: "*",
                     credentials: true,
                 },
                 introspection: JSON.parse(process.env.INTROSPECTION),
