@@ -20,8 +20,14 @@ __decorate([
     __metadata("design:type", mongoose_2.Schema.Types.ObjectId)
 ], Genre.prototype, "_id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
-    (0, mongoose_1.Prop)(),
+    (0, graphql_1.Field)(() => String, { description: "Gago" }),
+    (0, mongoose_1.Prop)({
+        required: true,
+        unique: true,
+        index: {
+            unique: true,
+        },
+    }),
     __metadata("design:type", String)
 ], Genre.prototype, "name", void 0);
 __decorate([

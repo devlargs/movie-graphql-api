@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
 
@@ -8,6 +8,7 @@ import {
   ListDirectorInput,
   UpdateDirectorInput,
 } from "./director.inputs";
+import { GenericObject } from "src/types";
 
 @Injectable()
 export class DirectorService {
@@ -15,9 +16,21 @@ export class DirectorService {
     @InjectModel(Director.name) private directorModel: Model<DirectorDocument>,
   ) {}
 
-  create(input: CreateDirectorInput) {
-    const createdDirector = new this.directorModel(input);
-    return createdDirector.save();
+  async create(input: CreateDirectorInput) {
+    const isExisting = await this.directorModel.find({
+      firstName: { $regex: input.firstName, $options: "i" },
+      lastName: { $regex: input.lastName, $options: "i" },
+    });
+
+    if (!isExisting.length) {
+      const createdDirector = new this.directorModel(input);
+      return createdDirector.save();
+    }
+
+    throw new HttpException(
+      `${input.firstName} ${input.lastName} is already existing`,
+      HttpStatus.EXPECTATION_FAILED,
+    );
   }
 
   getById(_id: MongooseSchema.Types.ObjectId) {

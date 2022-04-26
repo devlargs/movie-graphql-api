@@ -1,4 +1,4 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, InputType, ObjectType } from "@nestjs/graphql";
 import { Schema as MongooseSchema } from "mongoose";
 
 @InputType()
@@ -25,8 +25,8 @@ export class ListGenreInput {
   _id?: MongooseSchema.Types.ObjectId;
 
   @Field(() => String)
-  name: string;
+  name?: string;
 
   @Field(() => String)
-  color: string;
+  color?: string;
 }

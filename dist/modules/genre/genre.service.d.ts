@@ -8,9 +8,13 @@
 import { Model, Schema as MongooseSchema } from "mongoose";
 import { Genre, GenreDocument } from "./genre.model";
 import { CreateGenreInput, ListGenreInput, UpdateGenreInput } from "./genre.inputs";
+import { GenericObject } from "src/types";
 export declare class GenreService {
     private genreModel;
     constructor(genreModel: Model<GenreDocument>);
+    find(filters: GenericObject): Promise<(Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    })[]>;
     create(input: CreateGenreInput): Promise<Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;

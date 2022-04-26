@@ -29,7 +29,7 @@ AppModule = __decorate([
             config_1.ConfigModule.forRoot(),
             graphql_1.GraphQLModule.forRoot({
                 cors: {
-                    origin: "http://localhost:3000",
+                    origin: "*",
                     credentials: true,
                 },
                 introspection: JSON.parse(process.env.INTROSPECTION),
@@ -39,6 +39,15 @@ AppModule = __decorate([
                 sortSchema: true,
                 buildSchemaOptions: {
                     numberScalarMode: "integer",
+                },
+                formatError: (error) => {
+                    const graphQLFormattedError = {
+                        message: error === null || error === void 0 ? void 0 : error.message,
+                        name: error.name,
+                        code: error.extensions.code,
+                        error,
+                    };
+                    return graphQLFormattedError;
                 },
             }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {

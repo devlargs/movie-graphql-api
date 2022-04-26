@@ -9,6 +9,7 @@ import { MovieModule } from "./modules/movie/movie.module";
 import { GenreModule } from "./modules/genre/genre.module";
 import { ConfigModule } from "@nestjs/config";
 import { VERSION } from "./version";
+import { GraphQLError, GraphQLFormattedError } from "graphql";
 
 console.log("==========================");
 console.log(`Current Version: ${VERSION}`);
@@ -19,7 +20,7 @@ console.log("==========================");
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       cors: {
-        origin: "http://localhost:3000", // Tell front end to use this port
+        origin: "*",
         credentials: true,
       },
       introspection: JSON.parse(process.env.INTROSPECTION),
@@ -29,6 +30,15 @@ console.log("==========================");
       sortSchema: true,
       buildSchemaOptions: {
         numberScalarMode: "integer",
+      },
+      formatError: (error: GraphQLError) => {
+        const graphQLFormattedError = {
+          message: error?.message,
+          name: error.name,
+          code: error.extensions.code,
+          error,
+        };
+        return graphQLFormattedError;
       },
     }),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {

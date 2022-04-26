@@ -38,6 +38,8 @@ type Director {
 type Genre {
   _id: String!
   color: String!
+
+  """Gago"""
   name: String!
 }
 

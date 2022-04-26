@@ -8,6 +8,7 @@ import {
   ListGenreInput,
   UpdateGenreInput,
 } from "./genre.inputs";
+import { HttpException, HttpStatus } from "@nestjs/common";
 
 @Resolver(() => Genre)
 export class GenreResolver {
