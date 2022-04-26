@@ -28,18 +28,7 @@ export class GenreResolver {
 
   @Mutation(() => Genre)
   async createGenre(@Args("input") input: CreateGenreInput) {
-    const isExisting = await this.genreService.find({
-      name: { $regex: input.name, $options: "i" },
-    });
-
-    if (!isExisting.length) {
-      return this.genreService.create(input);
-    } else {
-      throw new HttpException(
-        `${input.name} is already taken`,
-        HttpStatus.FORBIDDEN,
-      );
-    }
+    return this.genreService.create(input);
   }
 
   @Mutation(() => Boolean)

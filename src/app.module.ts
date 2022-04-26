@@ -31,6 +31,15 @@ console.log("==========================");
       buildSchemaOptions: {
         numberScalarMode: "integer",
       },
+      formatError: (error: GraphQLError) => {
+        const graphQLFormattedError = {
+          message: error?.message,
+          name: error.name,
+          code: error.extensions.code,
+          error,
+        };
+        return graphQLFormattedError;
+      },
     }),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {
       autoIndex: true,

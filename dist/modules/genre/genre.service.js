@@ -21,9 +21,18 @@ let GenreService = class GenreService {
     constructor(genreModel) {
         this.genreModel = genreModel;
     }
-    create(input) {
-        const response = new this.genreModel(input);
-        return response.save();
+    find(filters) {
+        return this.genreModel.find(Object.assign({}, filters)).exec();
+    }
+    async create(input) {
+        const isExisting = await this.genreModel.find({
+            name: { $regex: input.name, $options: "i" },
+        });
+        if (!isExisting.length) {
+            const response = new this.genreModel(input);
+            return response.save();
+        }
+        throw new common_1.HttpException(`${input.name} is already taken`, common_1.HttpStatus.EXPECTATION_FAILED);
     }
     getById(_id) {
         return this.genreModel.findById(_id).exec();
@@ -32,9 +41,6 @@ let GenreService = class GenreService {
         return this.genreModel.deleteOne({ _id });
     }
     list(filters) {
-        return this.genreModel.find(Object.assign({}, filters)).exec();
-    }
-    find(filters) {
         return this.genreModel.find(Object.assign({}, filters)).exec();
     }
     update(input, _id) {

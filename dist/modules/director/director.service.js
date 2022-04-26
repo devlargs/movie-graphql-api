@@ -21,9 +21,16 @@ let DirectorService = class DirectorService {
     constructor(directorModel) {
         this.directorModel = directorModel;
     }
-    create(input) {
-        const createdDirector = new this.directorModel(input);
-        return createdDirector.save();
+    async create(input) {
+        const isExisting = await this.directorModel.find({
+            firstName: { $regex: input.firstName, $options: "i" },
+            lastName: { $regex: input.lastName, $options: "i" },
+        });
+        if (!isExisting.length) {
+            const createdDirector = new this.directorModel(input);
+            return createdDirector.save();
+        }
+        throw new common_1.HttpException(`${input.firstName} ${input.lastName} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
     }
     getById(_id) {
         return this.directorModel.findById(_id).exec();

@@ -40,6 +40,15 @@ AppModule = __decorate([
                 buildSchemaOptions: {
                     numberScalarMode: "integer",
                 },
+                formatError: (error) => {
+                    const graphQLFormattedError = {
+                        message: error === null || error === void 0 ? void 0 : error.message,
+                        name: error.name,
+                        code: error.extensions.code,
+                        error,
+                    };
+                    return graphQLFormattedError;
+                },
             }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {
                 autoIndex: true,

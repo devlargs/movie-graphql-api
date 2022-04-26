@@ -12,6 +12,9 @@ import { GenericObject } from "src/types";
 export declare class GenreService {
     private genreModel;
     constructor(genreModel: Model<GenreDocument>);
+    find(filters: GenericObject): Promise<(Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    })[]>;
     create(input: CreateGenreInput): Promise<Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;
@@ -22,9 +25,6 @@ export declare class GenreService {
         _id: any;
     }, {}, GenreDocument>;
     list(filters: ListGenreInput): Promise<(Genre & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    })[]>;
-    find(filters: GenericObject): Promise<(Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
     update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Genre & import("mongoose").Document<any, any, any> & {

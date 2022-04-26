@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
 
@@ -16,9 +16,24 @@ export class GenreService {
     @InjectModel(Genre.name) private genreModel: Model<GenreDocument>,
   ) {}
 
-  create(input: CreateGenreInput) {
-    const response = new this.genreModel(input);
-    return response.save();
+  find(filters: GenericObject) {
+    return this.genreModel.find({ ...filters }).exec();
+  }
+
+  async create(input: CreateGenreInput) {
+    const isExisting = await this.genreModel.find({
+      name: { $regex: input.name, $options: "i" },
+    });
+
+    if (!isExisting.length) {
+      const response = new this.genreModel(input);
+      return response.save();
+    }
+
+    throw new HttpException(
+      `${input.name} is already taken`,
+      HttpStatus.EXPECTATION_FAILED,
+    );
   }
 
   getById(_id: MongooseSchema.Types.ObjectId) {
@@ -30,10 +45,6 @@ export class GenreService {
   }
 
   list(filters: ListGenreInput) {
-    return this.genreModel.find({ ...filters }).exec();
-  }
-
-  find(filters: GenericObject) {
     return this.genreModel.find({ ...filters }).exec();
   }
 
