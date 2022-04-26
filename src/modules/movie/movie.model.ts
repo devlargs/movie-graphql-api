@@ -4,6 +4,7 @@ import { Document, Schema as MongooseSchema } from "mongoose";
 
 import { Director } from "../director/director.model";
 import { Genre } from "../genre/genre.model";
+import { Actor } from "../actor/actor.model";
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -12,8 +13,16 @@ export class Movie {
   _id: MongooseSchema.Types.ObjectId;
 
   @Field(() => String)
+  @Prop()
+  imageUrl: string;
+
+  @Field(() => String)
   @Prop({ unique: true })
   title: string;
+
+  @Field(() => [Actor])
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Actor.name })
+  actors: MongooseSchema.Types.ObjectId[] | Actor[];
 
   @Field(() => [Director])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Director.name })
@@ -22,10 +31,6 @@ export class Movie {
   @Field(() => [Genre])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Genre.name })
   genres: MongooseSchema.Types.ObjectId[] | Genre[];
-
-  @Field(() => String)
-  @Prop()
-  imageUrl: string;
 }
 
 export type MovieDocument = Movie & Document;

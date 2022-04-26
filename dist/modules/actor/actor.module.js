@@ -6,26 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModule = void 0;
+exports.ActorModule = void 0;
 const common_1 = require("@nestjs/common");
-const user_resolver_1 = require("./user.resolver");
-const user_service_1 = require("./user.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_model_1 = require("./user.model");
-let UserModule = class UserModule {
+const actor_model_1 = require("./actor.model");
+const actor_service_1 = require("./actor.service");
+const actor_resolver_1 = require("./actor.resolver");
+let ActorModule = class ActorModule {
 };
-UserModule = __decorate([
+ActorModule = __decorate([
     (0, common_1.Module)({
-        providers: [user_resolver_1.UserResolver, user_service_1.UserService],
         imports: [
-            mongoose_1.MongooseModule.forFeature([
-                {
-                    name: "User",
-                    schema: user_model_1.UserSchema,
-                },
-            ]),
+            mongoose_1.MongooseModule.forFeature([{ name: actor_model_1.Actor.name, schema: actor_model_1.ActorSchema }]),
         ],
+        providers: [actor_service_1.ActorService, actor_resolver_1.ActorResolver],
     })
-], UserModule);
-exports.UserModule = UserModule;
-//# sourceMappingURL=user.module.js.map
+], ActorModule);
+exports.ActorModule = ActorModule;
+//# sourceMappingURL=actor.module.js.map

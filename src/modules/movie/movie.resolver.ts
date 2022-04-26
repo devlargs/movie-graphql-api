@@ -10,9 +10,14 @@ import { Schema as MongooseSchema } from "mongoose";
 
 import { Movie, MovieDocument } from "./movie.model";
 import { MovieService } from "./movie.service";
-import { CreateMovieInput, ListMovieInput } from "./movie.inputs";
+import {
+  CreateMovieInput,
+  ListMovieInput,
+  UpdateMovieInput,
+} from "./movie.inputs";
 import { Director } from "../director/director.model";
 import { Genre } from "../genre/genre.model";
+import { Actor } from "../actor/actor.model";
 
 @Resolver(() => Movie)
 export class MovieResolver {
@@ -41,9 +46,23 @@ export class MovieResolver {
     return movie.directors;
   }
 
+  @ResolveField(() => [Actor])
+  async actors(@Parent() movie: MovieDocument) {
+    await movie.populate({ path: "actors", model: Actor.name });
+    return movie.actors;
+  }
+
   @ResolveField(() => [Genre])
   async genres(@Parent() movie: MovieDocument) {
     await movie.populate({ path: "genres", model: Genre.name });
     return movie.genres;
+  }
+
+  @Mutation(() => Movie)
+  async updateMovie(
+    @Args("input") input: UpdateMovieInput,
+    @Args("_id", { type: () => String }) _id: MongooseSchema.Types.ObjectId,
+  ) {
+    return this.movieService.updateOne(input, _id);
   }
 }

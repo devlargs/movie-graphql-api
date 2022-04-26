@@ -3,7 +3,11 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
 
 import { Movie, MovieDocument } from "./movie.model";
-import { CreateMovieInput, ListMovieInput } from "./movie.inputs";
+import {
+  CreateMovieInput,
+  ListMovieInput,
+  UpdateMovieInput,
+} from "./movie.inputs";
 
 @Injectable()
 export class MovieService {
@@ -36,5 +40,15 @@ export class MovieService {
 
   list(filters: ListMovieInput) {
     return this.movieModel.find({ ...filters }).sort({ title: "ascending" });
+  }
+
+  updateOne(input: UpdateMovieInput, _id: MongooseSchema.Types.ObjectId) {
+    return this.movieModel.findOneAndUpdate(
+      { _id },
+      { ...input },
+      {
+        new: true,
+      },
+    );
   }
 }

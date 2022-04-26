@@ -14,6 +14,9 @@ export class CreateMovieInput {
 
   @Field(() => String)
   imageUrl: string;
+
+  @Field(() => [String])
+  actors: MongooseSchema.Types.ObjectId[];
 }
 
 @InputType()
@@ -32,4 +35,28 @@ export class ListMovieInput {
 
   @Field(() => String)
   imageUrl: string;
+
+  @Field(() => String)
+  actors: MongooseSchema.Types.ObjectId[];
+}
+
+@InputType()
+export class UpdateMovieInput {
+  @Field(() => String, { nullable: true })
+  _id?: MongooseSchema.Types.ObjectId;
+
+  @Field(() => String, { nullable: true })
+  title?: string;
+
+  @Field(() => [String], { nullable: true })
+  directors?: MongooseSchema.Types.ObjectId[];
+
+  @Field(() => [String], { nullable: true })
+  genres?: MongooseSchema.Types.ObjectId[];
+
+  @Field(() => String, { nullable: true })
+  imageUrl?: string;
+
+  @Field(() => [String], { nullable: true })
+  actors?: MongooseSchema.Types.ObjectId[];
 }

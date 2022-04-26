@@ -15,6 +15,7 @@ const graphql_1 = require("@nestjs/graphql");
 const mongoose_2 = require("mongoose");
 const director_model_1 = require("../director/director.model");
 const genre_model_1 = require("../genre/genre.model");
+const actor_model_1 = require("../actor/actor.model");
 let Movie = class Movie {
 };
 __decorate([
@@ -23,9 +24,19 @@ __decorate([
 ], Movie.prototype, "_id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Movie.prototype, "imageUrl", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String),
     (0, mongoose_1.Prop)({ unique: true }),
     __metadata("design:type", String)
 ], Movie.prototype, "title", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [actor_model_1.Actor]),
+    (0, mongoose_1.Prop)({ type: [mongoose_2.Schema.Types.ObjectId], ref: actor_model_1.Actor.name }),
+    __metadata("design:type", Array)
+], Movie.prototype, "actors", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [director_model_1.Director]),
     (0, mongoose_1.Prop)({ type: [mongoose_2.Schema.Types.ObjectId], ref: director_model_1.Director.name }),
@@ -36,11 +47,6 @@ __decorate([
     (0, mongoose_1.Prop)({ type: [mongoose_2.Schema.Types.ObjectId], ref: genre_model_1.Genre.name }),
     __metadata("design:type", Array)
 ], Movie.prototype, "genres", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String),
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Movie.prototype, "imageUrl", void 0);
 Movie = __decorate([
     (0, graphql_1.ObjectType)(),
     (0, mongoose_1.Schema)({ timestamps: true })

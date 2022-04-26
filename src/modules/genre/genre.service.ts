@@ -8,7 +8,6 @@ import {
   ListGenreInput,
   UpdateGenreInput,
 } from "./genre.inputs";
-import { GenericObject } from "src/types";
 
 @Injectable()
 export class GenreService {

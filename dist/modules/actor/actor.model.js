@@ -8,40 +8,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchema = exports.User = void 0;
+exports.ActorSchema = exports.Actor = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
 const graphql_1 = require("@nestjs/graphql");
-const mongoose_1 = __importDefault(require("mongoose"));
-let User = class User {
+const mongoose_2 = require("mongoose");
+let Actor = class Actor {
 };
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", mongoose_2.Schema.Types.ObjectId)
+], Actor.prototype, "_id", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)(() => String),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], Actor.prototype, "firstName", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", Number)
-], User.prototype, "age", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)(() => String),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "_id", void 0);
-User = __decorate([
-    (0, graphql_1.ObjectType)()
-], User);
-exports.User = User;
-exports.UserSchema = new mongoose_1.default.Schema({
-    firstName: String,
-    lastName: String,
-    age: Number,
-}, {
-    timestamps: true,
-});
-//# sourceMappingURL=user.model.js.map
+], Actor.prototype, "lastName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String),
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Actor.prototype, "imageUrl", void 0);
+Actor = __decorate([
+    (0, graphql_1.ObjectType)(),
+    (0, mongoose_1.Schema)({ timestamps: true })
+], Actor);
+exports.Actor = Actor;
+exports.ActorSchema = mongoose_1.SchemaFactory.createForClass(Actor);
+//# sourceMappingURL=actor.model.js.map

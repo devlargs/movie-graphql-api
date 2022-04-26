@@ -20,6 +20,7 @@ const movie_service_1 = require("./movie.service");
 const movie_inputs_1 = require("./movie.inputs");
 const director_model_1 = require("../director/director.model");
 const genre_model_1 = require("../genre/genre.model");
+const actor_model_1 = require("../actor/actor.model");
 let MovieResolver = class MovieResolver {
     constructor(movieService) {
         this.movieService = movieService;
@@ -37,9 +38,16 @@ let MovieResolver = class MovieResolver {
         await movie.populate({ path: "directors", model: director_model_1.Director.name });
         return movie.directors;
     }
+    async actors(movie) {
+        await movie.populate({ path: "actors", model: actor_model_1.Actor.name });
+        return movie.actors;
+    }
     async genres(movie) {
         await movie.populate({ path: "genres", model: genre_model_1.Genre.name });
         return movie.genres;
+    }
+    async updateMovie(input, _id) {
+        return this.movieService.updateOne(input, _id);
     }
 };
 __decorate([
@@ -71,12 +79,27 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MovieResolver.prototype, "directors", null);
 __decorate([
+    (0, graphql_1.ResolveField)(() => [actor_model_1.Actor]),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], MovieResolver.prototype, "actors", null);
+__decorate([
     (0, graphql_1.ResolveField)(() => [genre_model_1.Genre]),
     __param(0, (0, graphql_1.Parent)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MovieResolver.prototype, "genres", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => movie_model_1.Movie),
+    __param(0, (0, graphql_1.Args)("input")),
+    __param(1, (0, graphql_1.Args)("_id", { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [movie_inputs_1.UpdateMovieInput, mongoose_1.Schema.Types.ObjectId]),
+    __metadata("design:returntype", Promise)
+], MovieResolver.prototype, "updateMovie", null);
 MovieResolver = __decorate([
     (0, graphql_1.Resolver)(() => movie_model_1.Movie),
     __metadata("design:paramtypes", [movie_service_1.MovieService])

@@ -11,13 +11,13 @@ const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
 const path_1 = require("path");
-const user_module_1 = require("./modules/user/user.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const director_module_1 = require("./modules/director/director.module");
 const movie_module_1 = require("./modules/movie/movie.module");
 const genre_module_1 = require("./modules/genre/genre.module");
 const config_1 = require("@nestjs/config");
 const version_1 = require("./version");
+const actor_module_1 = require("./modules/actor/actor.module");
 console.log("==========================");
 console.log(`Current Version: ${version_1.VERSION}`);
 console.log("==========================");
@@ -53,10 +53,10 @@ AppModule = __decorate([
             mongoose_1.MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {
                 autoIndex: true,
             }),
+            actor_module_1.ActorModule,
+            director_module_1.DirectorModule,
             genre_module_1.GenreModule,
             movie_module_1.MovieModule,
-            director_module_1.DirectorModule,
-            user_module_1.UserModule,
         ],
     })
 ], AppModule);

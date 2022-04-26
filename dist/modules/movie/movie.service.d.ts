@@ -7,7 +7,7 @@
 /// <reference types="mongoose/types/schemaoptions" />
 import { Model, Schema as MongooseSchema } from "mongoose";
 import { Movie, MovieDocument } from "./movie.model";
-import { CreateMovieInput, ListMovieInput } from "./movie.inputs";
+import { CreateMovieInput, ListMovieInput, UpdateMovieInput } from "./movie.inputs";
 export declare class MovieService {
     private movieModel;
     constructor(movieModel: Model<MovieDocument>);
@@ -20,6 +20,11 @@ export declare class MovieService {
     list(filters: ListMovieInput): import("mongoose").Query<(Movie & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[], Movie & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, {}, MovieDocument>;
+    updateOne(input: UpdateMovieInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Movie & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }, Movie & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, {}, MovieDocument>;
 }

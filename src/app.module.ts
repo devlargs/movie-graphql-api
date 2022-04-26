@@ -2,14 +2,14 @@ import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { join } from "path";
-import { UserModule } from "./modules/user/user.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { DirectorModule } from "./modules/director/director.module";
 import { MovieModule } from "./modules/movie/movie.module";
 import { GenreModule } from "./modules/genre/genre.module";
 import { ConfigModule } from "@nestjs/config";
 import { VERSION } from "./version";
-import { GraphQLError, GraphQLFormattedError } from "graphql";
+import { GraphQLError } from "graphql";
+import { ActorModule } from "./modules/actor/actor.module";
 
 console.log("==========================");
 console.log(`Current Version: ${VERSION}`);
@@ -44,10 +44,10 @@ console.log("==========================");
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_URL, {
       autoIndex: true,
     }),
+    ActorModule,
+    DirectorModule,
     GenreModule,
     MovieModule,
-    DirectorModule,
-    UserModule,
   ],
 })
 export class AppModule {}

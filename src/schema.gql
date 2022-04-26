@@ -2,11 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AddUserInput {
-  age: Int!
-
-  """First Name"""
+type Actor {
+  _id: String!
   firstName: String!
+  imageUrl: String!
+  lastName: String!
+}
+
+input CreateActorInput {
+  firstName: String!
+  imageUrl: String!
   lastName: String!
 }
 
@@ -22,6 +27,7 @@ input CreateGenreInput {
 }
 
 input CreateMovieInput {
+  actors: [String!]!
   directors: [String!]!
   genres: [String!]!
   imageUrl: String!
@@ -43,6 +49,13 @@ type Genre {
   name: String!
 }
 
+input ListActorInput {
+  _id: String
+  firstName: String
+  imageUrl: String
+  lastName: String
+}
+
 input ListDirectorInput {
   _id: String
   firstName: String
@@ -58,6 +71,7 @@ input ListGenreInput {
 
 input ListMovieInput {
   _id: String
+  actors: String!
   directors: [String!]!
   genres: [String!]!
   imageUrl: String!
@@ -66,6 +80,7 @@ input ListMovieInput {
 
 type Movie {
   _id: String!
+  actors: [Actor!]!
   directors: [Director!]!
   genres: [Genre!]!
   imageUrl: String!
@@ -73,23 +88,32 @@ type Movie {
 }
 
 type Mutation {
-  addUser(input: AddUserInput!): [User!]!
+  createActor(input: CreateActorInput!): Actor!
   createDirector(input: CreateDirectorInput!): Director!
   createGenre(input: CreateGenreInput!): Genre!
   createMovie(input: CreateMovieInput!): Movie!
   deleteGenre(id: String!): Boolean!
+  updateActor(_id: String!, input: UpdateActorInput!): Actor!
   updateDirector(_id: String!, input: UpdateDirectorInput!): Director!
   updateGenre(id: String!, input: UpdateGenreInput!): Genre!
+  updateMovie(_id: String!, input: UpdateMovieInput!): Movie!
 }
 
 type Query {
+  actor(_id: String!): Actor!
+  actors(filters: ListActorInput): [Actor!]!
   director(_id: String!): Director!
   directors(filters: ListDirectorInput): [Director!]!
   genre(_id: String!): Genre!
   genres(filters: ListGenreInput): [Genre!]!
   movie(_id: String!): Movie!
   movies(filters: ListMovieInput): [Movie!]!
-  users: [User!]!
+}
+
+input UpdateActorInput {
+  firstName: String
+  imageUrl: String
+  lastName: String
 }
 
 input UpdateDirectorInput {
@@ -103,9 +127,11 @@ input UpdateGenreInput {
   name: String
 }
 
-type User {
-  _id: String!
-  age: Int!
-  firstName: String!
-  lastName: String!
+input UpdateMovieInput {
+  _id: String
+  actors: [String!]
+  directors: [String!]
+  genres: [String!]
+  imageUrl: String
+  title: String
 }

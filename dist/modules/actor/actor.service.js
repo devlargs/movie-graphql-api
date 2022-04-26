@@ -12,44 +12,42 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MovieService = void 0;
+exports.ActorService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const movie_model_1 = require("./movie.model");
-let MovieService = class MovieService {
-    constructor(movieModel) {
-        this.movieModel = movieModel;
+const actor_model_1 = require("./actor.model");
+let ActorService = class ActorService {
+    constructor(actorModel) {
+        this.actorModel = actorModel;
     }
     async create(input) {
-        const isExisting = await this.movieModel.find({
-            title: {
-                $regex: input.title,
-                $options: "i",
-            },
+        const isExisting = await this.actorModel.find({
+            firstName: { $regex: input.firstName, $options: "i" },
+            lastName: { $regex: input.lastName, $options: "i" },
         });
-        if (isExisting.length) {
-            throw new common_1.HttpException(`${input.title} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
+        if (!isExisting.length) {
+            const createdActor = new this.actorModel(input);
+            return createdActor.save();
         }
-        const createdMovie = new this.movieModel(input);
-        return createdMovie.save();
+        throw new common_1.HttpException(`${input.firstName} ${input.lastName} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
     }
     getById(_id) {
-        return this.movieModel.findById(_id).exec();
+        return this.actorModel.findById(_id).exec();
     }
     list(filters) {
-        return this.movieModel.find(Object.assign({}, filters)).sort({ title: "ascending" });
+        return this.actorModel.find(Object.assign({}, filters)).sort({ lastName: "ascending" });
     }
     updateOne(input, _id) {
-        return this.movieModel.findOneAndUpdate({ _id }, Object.assign({}, input), {
+        return this.actorModel.findOneAndUpdate({ _id }, Object.assign({}, input), {
             new: true,
         });
     }
 };
-MovieService = __decorate([
+ActorService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(movie_model_1.Movie.name)),
+    __param(0, (0, mongoose_1.InjectModel)(actor_model_1.Actor.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
-], MovieService);
-exports.MovieService = MovieService;
-//# sourceMappingURL=movie.service.js.map
+], ActorService);
+exports.ActorService = ActorService;
+//# sourceMappingURL=actor.service.js.map
