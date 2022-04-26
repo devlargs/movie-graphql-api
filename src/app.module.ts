@@ -9,6 +9,7 @@ import { MovieModule } from "./modules/movie/movie.module";
 import { GenreModule } from "./modules/genre/genre.module";
 import { ConfigModule } from "@nestjs/config";
 import { VERSION } from "./version";
+import { GraphQLError, GraphQLFormattedError } from "graphql";
 
 console.log("==========================");
 console.log(`Current Version: ${VERSION}`);

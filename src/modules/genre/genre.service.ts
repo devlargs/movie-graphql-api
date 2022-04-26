@@ -32,6 +32,10 @@ export class GenreService {
     return this.genreModel.find({ ...filters }).exec();
   }
 
+  find(filters: Record<string, any>) {
+    return this.genreModel.find({ ...filters }).exec();
+  }
+
   update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId) {
     return this.genreModel.findOneAndUpdate(
       { _id },

@@ -18,6 +18,7 @@ const mongoose_1 = require("mongoose");
 const genre_model_1 = require("./genre.model");
 const genre_service_1 = require("./genre.service");
 const genre_inputs_1 = require("./genre.inputs");
+const common_1 = require("@nestjs/common");
 let GenreResolver = class GenreResolver {
     constructor(genreService) {
         this.genreService = genreService;
@@ -29,7 +30,15 @@ let GenreResolver = class GenreResolver {
         return this.genreService.list(filters);
     }
     async createGenre(input) {
-        return this.genreService.create(input);
+        const isExisting = await this.genreService.find({
+            name: { $regex: input.name, $options: "i" },
+        });
+        if (!isExisting.length) {
+            return this.genreService.create(input);
+        }
+        else {
+            throw new common_1.HttpException(`${input.name} is already taken`, common_1.HttpStatus.FORBIDDEN);
+        }
     }
     async deleteGenre(_id) {
         this.genreService.delete(_id);

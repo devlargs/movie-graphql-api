@@ -8,8 +8,14 @@ export class Genre {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId;
 
-  @Field(() => String)
-  @Prop()
+  @Field(() => String, { description: "Gago" })
+  @Prop({
+    required: true,
+    unique: true,
+    index: {
+      unique: true,
+    },
+  })
   name: string;
 
   @Field(() => String)

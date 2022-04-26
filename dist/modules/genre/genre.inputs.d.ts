@@ -9,6 +9,6 @@ export declare class UpdateGenreInput {
 }
 export declare class ListGenreInput {
     _id?: MongooseSchema.Types.ObjectId;
-    name: string;
-    color: string;
+    name?: string;
+    color?: string;
 }

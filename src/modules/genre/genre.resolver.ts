@@ -8,6 +8,7 @@ import {
   ListGenreInput,
   UpdateGenreInput,
 } from "./genre.inputs";
+import { HttpException, HttpStatus } from "@nestjs/common";
 
 @Resolver(() => Genre)
 export class GenreResolver {
@@ -27,7 +28,18 @@ export class GenreResolver {
 
   @Mutation(() => Genre)
   async createGenre(@Args("input") input: CreateGenreInput) {
-    return this.genreService.create(input);
+    const isExisting = await this.genreService.find({
+      name: { $regex: input.name, $options: "i" },
+    });
+
+    if (!isExisting.length) {
+      return this.genreService.create(input);
+    } else {
+      throw new HttpException(
+        `${input.name} is already taken`,
+        HttpStatus.FORBIDDEN,
+      );
+    }
   }
 
   @Mutation(() => Boolean)

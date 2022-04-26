@@ -23,6 +23,9 @@ export declare class GenreService {
     list(filters: ListGenreInput): Promise<(Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
+    find(filters: Record<string, any>): Promise<(Genre & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    })[]>;
     update(input: UpdateGenreInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Genre & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, Genre & import("mongoose").Document<any, any, any> & {
