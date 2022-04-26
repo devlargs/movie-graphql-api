@@ -8,6 +8,7 @@ import {
   ListGenreInput,
   UpdateGenreInput,
 } from "./genre.inputs";
+import { GenericObject } from "src/types";
 
 @Injectable()
 export class GenreService {
@@ -32,7 +33,7 @@ export class GenreService {
     return this.genreModel.find({ ...filters }).exec();
   }
 
-  find(filters: Record<string, any>) {
+  find(filters: GenericObject) {
     return this.genreModel.find({ ...filters }).exec();
   }
 
