@@ -32,7 +32,7 @@ let GenreService = class GenreService {
             const response = new this.genreModel(input);
             return response.save();
         }
-        throw new common_1.HttpException(`${input.name} is already taken`, common_1.HttpStatus.EXPECTATION_FAILED);
+        throw new common_1.HttpException(`${input.name} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
     }
     getById(_id) {
         return this.genreModel.findById(_id).exec();

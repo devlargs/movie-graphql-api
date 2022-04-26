@@ -31,7 +31,7 @@ export class GenreService {
     }
 
     throw new HttpException(
-      `${input.name} is already taken`,
+      `${input.name} is already existing`,
       HttpStatus.EXPECTATION_FAILED,
     );
   }

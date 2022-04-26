@@ -21,7 +21,16 @@ let MovieService = class MovieService {
     constructor(movieModel) {
         this.movieModel = movieModel;
     }
-    create(input) {
+    async create(input) {
+        const isExisting = await this.movieModel.find({
+            title: {
+                $regex: input.title,
+                $options: "i",
+            },
+        });
+        if (isExisting.length) {
+            throw new common_1.HttpException(`${input.title} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
+        }
         const createdMovie = new this.movieModel(input);
         return createdMovie.save();
     }

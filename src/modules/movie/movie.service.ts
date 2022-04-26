@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
 
@@ -11,7 +11,21 @@ export class MovieService {
     @InjectModel(Movie.name) private movieModel: Model<MovieDocument>,
   ) {}
 
-  create(input: CreateMovieInput) {
+  async create(input: CreateMovieInput) {
+    const isExisting = await this.movieModel.find({
+      title: {
+        $regex: input.title,
+        $options: "i",
+      },
+    });
+
+    if (isExisting.length) {
+      throw new HttpException(
+        `${input.title} is already existing`,
+        HttpStatus.EXPECTATION_FAILED,
+      );
+    }
+
     const createdMovie = new this.movieModel(input);
     return createdMovie.save();
   }
