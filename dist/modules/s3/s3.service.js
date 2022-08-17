@@ -37,7 +37,7 @@ let S3Service = class S3Service {
             };
         }
         const params = {
-            Bucket: `${bucketName}/${folder}`,
+            Bucket: `${bucketName}/${process.env.ENVIRONMENT}/${folder}`,
             Key: filename,
             Expires: 60,
         };
