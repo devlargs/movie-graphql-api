@@ -18,6 +18,7 @@ const genre_module_1 = require("./modules/genre/genre.module");
 const config_1 = require("@nestjs/config");
 const version_1 = require("./version");
 const actor_module_1 = require("./modules/actor/actor.module");
+const s3_module_1 = require("./modules/s3/s3.module");
 console.log("==========================");
 console.log(`Current Version: ${version_1.VERSION}`);
 console.log("==========================");
@@ -57,6 +58,7 @@ AppModule = __decorate([
             director_module_1.DirectorModule,
             genre_module_1.GenreModule,
             movie_module_1.MovieModule,
+            s3_module_1.S3Module,
         ],
     })
 ], AppModule);

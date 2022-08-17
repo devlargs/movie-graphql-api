@@ -10,6 +10,7 @@ import { ConfigModule } from "@nestjs/config";
 import { VERSION } from "./version";
 import { GraphQLError } from "graphql";
 import { ActorModule } from "./modules/actor/actor.module";
+import { S3Module } from "./modules/s3/s3.module";
 
 console.log("==========================");
 console.log(`Current Version: ${VERSION}`);
@@ -48,6 +49,7 @@ console.log("==========================");
     DirectorModule,
     GenreModule,
     MovieModule,
+    S3Module,
   ],
 })
 export class AppModule {}
