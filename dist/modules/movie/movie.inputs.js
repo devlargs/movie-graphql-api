@@ -49,6 +49,10 @@ __decorate([
     __metadata("design:type", String)
 ], ListMovieInput.prototype, "title", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], ListMovieInput.prototype, "imageHashUrl", void 0);
+__decorate([
     (0, graphql_1.Field)(() => [String]),
     __metadata("design:type", Array)
 ], ListMovieInput.prototype, "directors", void 0);
@@ -94,6 +98,10 @@ __decorate([
     (0, graphql_1.Field)(() => [String], { nullable: true }),
     __metadata("design:type", Array)
 ], UpdateMovieInput.prototype, "actors", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], UpdateMovieInput.prototype, "imageHashUrl", void 0);
 UpdateMovieInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateMovieInput);

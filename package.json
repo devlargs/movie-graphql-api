@@ -33,6 +33,7 @@
     "aws-sdk": "^2.1197.0",
     "graphql": "^16.3.0",
     "mongoose": "^6.2.7",
+    "plaiceholder": "^2.4.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5"

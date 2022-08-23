@@ -16,6 +16,7 @@ export declare class Movie {
     actors: MongooseSchema.Types.ObjectId[] | Actor[];
     directors: MongooseSchema.Types.ObjectId[] | Director[];
     genres: MongooseSchema.Types.ObjectId[] | Genre[];
+    imageHashUrl: string;
 }
 export declare type MovieDocument = Movie & Document;
 export declare const MovieSchema: MongooseSchema<Document<Movie, any, any>, import("mongoose").Model<Document<Movie, any, any>, any, any, any>, any, any>;

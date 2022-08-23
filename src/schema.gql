@@ -74,6 +74,7 @@ input ListMovieInput {
   actors: String!
   directors: [String!]!
   genres: [String!]!
+  imageHashUrl: String
   imageUrl: String!
   title: String
 }
@@ -83,6 +84,7 @@ type Movie {
   actors: [Actor!]!
   directors: [Director!]!
   genres: [Genre!]!
+  imageHashUrl: String
   imageUrl: String!
   title: String!
 }
@@ -132,6 +134,7 @@ input UpdateMovieInput {
   actors: [String!]
   directors: [String!]
   genres: [String!]
+  imageHashUrl: String
   imageUrl: String
   title: String
 }

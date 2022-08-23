@@ -27,6 +27,9 @@ export class ListMovieInput {
   @Field(() => String, { nullable: true })
   title?: string;
 
+  @Field(() => String, { nullable: true })
+  imageHashUrl?: string;
+
   @Field(() => [String])
   directors: MongooseSchema.Types.ObjectId[];
 
@@ -59,4 +62,7 @@ export class UpdateMovieInput {
 
   @Field(() => [String], { nullable: true })
   actors?: MongooseSchema.Types.ObjectId[];
+
+  @Field(() => String, { nullable: true })
+  imageHashUrl?: string;
 }

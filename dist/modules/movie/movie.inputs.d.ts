@@ -9,6 +9,7 @@ export declare class CreateMovieInput {
 export declare class ListMovieInput {
     _id?: MongooseSchema.Types.ObjectId;
     title?: string;
+    imageHashUrl?: string;
     directors: MongooseSchema.Types.ObjectId[];
     genres: MongooseSchema.Types.ObjectId[];
     imageUrl: string;
@@ -21,4 +22,5 @@ export declare class UpdateMovieInput {
     genres?: MongooseSchema.Types.ObjectId[];
     imageUrl?: string;
     actors?: MongooseSchema.Types.ObjectId[];
+    imageHashUrl?: string;
 }

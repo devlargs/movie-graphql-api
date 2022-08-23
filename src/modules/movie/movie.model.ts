@@ -31,6 +31,10 @@ export class Movie {
   @Field(() => [Genre])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Genre.name })
   genres: MongooseSchema.Types.ObjectId[] | Genre[];
+
+  @Field(() => String, { nullable: true })
+  @Prop()
+  imageHashUrl: string;
 }
 
 export type MovieDocument = Movie & Document;

@@ -22,9 +22,7 @@ export declare class MovieService {
     })[], Movie & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, {}, MovieDocument>;
-    updateOne(input: UpdateMovieInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Movie & import("mongoose").Document<any, any, any> & {
+    updateOne(input: UpdateMovieInput, _id: MongooseSchema.Types.ObjectId): Promise<Movie & import("mongoose").Document<any, any, any> & {
         _id: any;
-    }, Movie & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    }, {}, MovieDocument>;
+    }>;
 }

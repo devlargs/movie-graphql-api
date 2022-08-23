@@ -47,6 +47,11 @@ __decorate([
     (0, mongoose_1.Prop)({ type: [mongoose_2.Schema.Types.ObjectId], ref: genre_model_1.Genre.name }),
     __metadata("design:type", Array)
 ], Movie.prototype, "genres", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Movie.prototype, "imageHashUrl", void 0);
 Movie = __decorate([
     (0, graphql_1.ObjectType)(),
     (0, mongoose_1.Schema)({ timestamps: true })

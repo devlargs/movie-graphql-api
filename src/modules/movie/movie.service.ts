@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Schema as MongooseSchema } from "mongoose";
-
+import { getPlaiceholder } from "plaiceholder";
 import { Movie, MovieDocument } from "./movie.model";
 import {
   CreateMovieInput,
@@ -30,7 +30,12 @@ export class MovieService {
       );
     }
 
-    const createdMovie = new this.movieModel(input);
+    const { base64 } = await getPlaiceholder(input.imageUrl);
+
+    const createdMovie = new this.movieModel({
+      ...input,
+      imageHashUrl: base64,
+    });
     return createdMovie.save();
   }
 
@@ -42,10 +47,18 @@ export class MovieService {
     return this.movieModel.find({ ...filters }).sort({ title: "ascending" });
   }
 
-  updateOne(input: UpdateMovieInput, _id: MongooseSchema.Types.ObjectId) {
+  async updateOne(input: UpdateMovieInput, _id: MongooseSchema.Types.ObjectId) {
+    const additionalData: UpdateMovieInput = {};
+
+    if (input.imageUrl) {
+      console.log(input.imageUrl);
+      const { base64 } = await getPlaiceholder(input.imageUrl);
+      additionalData.imageHashUrl = base64;
+    }
+
     return this.movieModel.findOneAndUpdate(
       { _id },
-      { ...input },
+      { ...input, ...additionalData },
       {
         new: true,
       },

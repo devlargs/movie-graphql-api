@@ -16,6 +16,7 @@ exports.MovieService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const plaiceholder_1 = require("plaiceholder");
 const movie_model_1 = require("./movie.model");
 let MovieService = class MovieService {
     constructor(movieModel) {
@@ -31,7 +32,8 @@ let MovieService = class MovieService {
         if (isExisting.length) {
             throw new common_1.HttpException(`${input.title} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
         }
-        const createdMovie = new this.movieModel(input);
+        const { base64 } = await (0, plaiceholder_1.getPlaiceholder)(input.imageUrl);
+        const createdMovie = new this.movieModel(Object.assign(Object.assign({}, input), { imageHashUrl: base64 }));
         return createdMovie.save();
     }
     getById(_id) {
@@ -40,8 +42,14 @@ let MovieService = class MovieService {
     list(filters) {
         return this.movieModel.find(Object.assign({}, filters)).sort({ title: "ascending" });
     }
-    updateOne(input, _id) {
-        return this.movieModel.findOneAndUpdate({ _id }, Object.assign({}, input), {
+    async updateOne(input, _id) {
+        const additionalData = {};
+        if (input.imageUrl) {
+            console.log(input.imageUrl);
+            const { base64 } = await (0, plaiceholder_1.getPlaiceholder)(input.imageUrl);
+            additionalData.imageHashUrl = base64;
+        }
+        return this.movieModel.findOneAndUpdate({ _id }, Object.assign(Object.assign({}, input), additionalData), {
             new: true,
         });
     }
