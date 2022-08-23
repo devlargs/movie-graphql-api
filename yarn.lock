@@ -5190,7 +5190,7 @@
     "inherits" "^2.0.1"
     "safe-buffer" "^5.0.1"
 
-"sharp@>= 0.30.6":
+"sharp@^0.30.7", "sharp@>= 0.30.6":
   "integrity" "sha512-G+MY2YW33jgflKPTXXptVO28HvNOo9G3j0MybYAHeEmby+QuD2U98dT6ueht9cv/XDqZspSpIhoSW+BAKJ7Hig=="
   "resolved" "https://registry.npmjs.org/sharp/-/sharp-0.30.7.tgz"
   "version" "0.30.7"
