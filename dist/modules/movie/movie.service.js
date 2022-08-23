@@ -45,7 +45,6 @@ let MovieService = class MovieService {
     async updateOne(input, _id) {
         const additionalData = {};
         if (input.imageUrl) {
-            console.log(input.imageUrl);
             const { base64 } = await (0, plaiceholder_1.getPlaiceholder)(input.imageUrl);
             additionalData.imageHashUrl = base64;
         }

@@ -51,7 +51,6 @@ export class MovieService {
     const additionalData: UpdateMovieInput = {};
 
     if (input.imageUrl) {
-      console.log(input.imageUrl);
       const { base64 } = await getPlaiceholder(input.imageUrl);
       additionalData.imageHashUrl = base64;
     }
