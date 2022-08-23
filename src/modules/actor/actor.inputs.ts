@@ -23,6 +23,9 @@ export class UpdateActorInput {
 
   @Field({ nullable: true })
   imageUrl?: string;
+
+  @Field(() => String, { nullable: true })
+  imageHashUrl?: string;
 }
 
 @InputType()
@@ -38,4 +41,7 @@ export class ListActorInput {
 
   @Field(() => String, { nullable: true })
   imageUrl?: string;
+
+  @Field(() => String, { nullable: true })
+  imageHashUrl?: string;
 }

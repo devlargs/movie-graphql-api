@@ -16,6 +16,7 @@ exports.ActorService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const plaiceholder_1 = require("plaiceholder");
 const actor_model_1 = require("./actor.model");
 let ActorService = class ActorService {
     constructor(actorModel) {
@@ -26,8 +27,9 @@ let ActorService = class ActorService {
             firstName: { $regex: input.firstName, $options: "i" },
             lastName: { $regex: input.lastName, $options: "i" },
         });
+        const { base64 } = await (0, plaiceholder_1.getPlaiceholder)(input.imageUrl);
         if (!isExisting.length) {
-            const createdActor = new this.actorModel(input);
+            const createdActor = new this.actorModel(Object.assign(Object.assign({}, input), { imageHashUrl: base64 }));
             return createdActor.save();
         }
         throw new common_1.HttpException(`${input.firstName} ${input.lastName} is already existing`, common_1.HttpStatus.EXPECTATION_FAILED);
@@ -38,8 +40,13 @@ let ActorService = class ActorService {
     list(filters) {
         return this.actorModel.find(Object.assign({}, filters)).sort({ lastName: "ascending" });
     }
-    updateOne(input, _id) {
-        return this.actorModel.findOneAndUpdate({ _id }, Object.assign({}, input), {
+    async updateOne(input, _id) {
+        const additionalData = {};
+        if (input.imageUrl) {
+            const { base64 } = await (0, plaiceholder_1.getPlaiceholder)(input.imageUrl);
+            additionalData.imageHashUrl = base64;
+        }
+        return this.actorModel.findOneAndUpdate({ _id }, Object.assign(Object.assign({}, input), additionalData), {
             new: true,
         });
     }

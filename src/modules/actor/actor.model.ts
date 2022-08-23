@@ -19,6 +19,10 @@ export class Actor {
   @Field(() => String)
   @Prop()
   imageUrl: string;
+
+  @Field(() => String, { nullable: true })
+  @Prop()
+  imageHashUrl: string;
 }
 
 export type ActorDocument = Actor & Document;

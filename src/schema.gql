@@ -5,6 +5,7 @@
 type Actor {
   _id: String!
   firstName: String!
+  imageHashUrl: String
   imageUrl: String!
   lastName: String!
 }
@@ -52,6 +53,7 @@ type Genre {
 input ListActorInput {
   _id: String
   firstName: String
+  imageHashUrl: String
   imageUrl: String
   lastName: String
 }
@@ -114,6 +116,7 @@ type Query {
 
 input UpdateActorInput {
   firstName: String
+  imageHashUrl: String
   imageUrl: String
   lastName: String
 }

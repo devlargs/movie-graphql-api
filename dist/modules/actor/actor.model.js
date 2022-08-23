@@ -34,6 +34,11 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Actor.prototype, "imageUrl", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Actor.prototype, "imageHashUrl", void 0);
 Actor = __decorate([
     (0, graphql_1.ObjectType)(),
     (0, mongoose_1.Schema)({ timestamps: true })

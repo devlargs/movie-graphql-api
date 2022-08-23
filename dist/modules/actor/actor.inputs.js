@@ -44,6 +44,10 @@ __decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], UpdateActorInput.prototype, "imageUrl", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], UpdateActorInput.prototype, "imageHashUrl", void 0);
 UpdateActorInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateActorInput);
@@ -66,6 +70,10 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], ListActorInput.prototype, "imageUrl", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], ListActorInput.prototype, "imageHashUrl", void 0);
 ListActorInput = __decorate([
     (0, graphql_1.InputType)()
 ], ListActorInput);

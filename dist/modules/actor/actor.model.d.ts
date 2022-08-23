@@ -11,6 +11,7 @@ export declare class Actor {
     firstName: string;
     lastName: string;
     imageUrl: string;
+    imageHashUrl: string;
 }
 export declare type ActorDocument = Actor & Document;
 export declare const ActorSchema: MongooseSchema<Document<Actor, any, any>, import("mongoose").Model<Document<Actor, any, any>, any, any, any>, any, any>;

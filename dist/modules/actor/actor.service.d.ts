@@ -22,9 +22,7 @@ export declare class ActorService {
     })[], Actor & import("mongoose").Document<any, any, any> & {
         _id: any;
     }, {}, ActorDocument>;
-    updateOne(input: UpdateActorInput, _id: MongooseSchema.Types.ObjectId): import("mongoose").Query<Actor & import("mongoose").Document<any, any, any> & {
+    updateOne(input: UpdateActorInput, _id: MongooseSchema.Types.ObjectId): Promise<Actor & import("mongoose").Document<any, any, any> & {
         _id: any;
-    }, Actor & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    }, {}, ActorDocument>;
+    }>;
 }
